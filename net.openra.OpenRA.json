@@ -214,7 +214,9 @@
       "build-commands": [
         "/usr/lib/sdk/mono5/install.sh",
         "cp -ar /usr/lib/sdk/mono5/lib/mono/gac/System.Drawing /app/lib/mono/gac/",
-        "rm -f /app/lib/mono/gac/System.Drawing/*/*.pdb"
+        "rm -f /app/lib/mono/gac/System.Drawing/*/*.pdb",
+        "cp -ar /usr/lib/sdk/mono5/lib/mono/gac/System.Numerics /app/lib/mono/gac/",
+        "rm -f /app/lib/mono/gac/System.Numerics/*/*.pdb"
       ],
       "build-options" : {
         "no-debuginfo": true,
