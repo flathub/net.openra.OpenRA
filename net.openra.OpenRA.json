@@ -81,8 +81,8 @@
         {
           "type": "git",
           "url": "https://github.com/OpenRA/OpenRA",
-          "commit": "9ac7765a934248db90de2ba3c154fa5732b766f0",
-          "branch": "release-20171014"
+          "commit": "299b7570456decb5016d3405de114edddb877707",
+          "branch": "release-20180218"
         },
         {
           "type": "shell",
@@ -174,21 +174,15 @@
         },
         {
           "type": "file",
-          "url": "https://nuget.org/api/v2/package/SmartIrc4net/0.4.5.1",
-          "dest-filename": "thirdparty/download/SmartIrc4net.zip",
-          "sha256": "4b58596540383f58a24a99cf73391b3e80e15d7498dec785ac7cbb34a40ea3b4"
-        },
-        {
-          "type": "file",
           "url": "https://nuget.org/api/v2/package/rix0rrr.BeaconLib/1.0.1",
           "dest-filename": "thirdparty/download/rix0rrr.BeaconLib.zip",
           "sha256": "e8e126b98ae7676cb0434455aa8a41c17a927c1b40c4cf368f9527af6bc251f2"
         },
         {
           "type": "archive",
-          "url": "https://geolite.maxmind.com/download/geoip/database/GeoLite2-Country_20171107.tar.gz",
+          "url": "https://geolite.maxmind.com/download/geoip/database/GeoLite2-Country_20180206.tar.gz",
           "dest": "thirdparty/download/",
-          "sha256": "ad497e127835fd5af30aa512ab063e36b561aaa5f91281b1b92ad089b7c659ec"
+          "sha256": "0e0611d5f86e08432e68a1989923a61357deceb81eecabe45e89b3da79af169c"
         },
         {
           "type": "shell",
