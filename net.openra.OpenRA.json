@@ -3,7 +3,7 @@
   "runtime": "org.freedesktop.Platform",
   "runtime-version": "1.6",
   "sdk": "org.freedesktop.Sdk",
-  "command": "openra-ra",
+  "command": "openra-ra-wrapper",
   "rename-appdata-file": "openra-ra.appdata.xml",
   "rename-desktop-file": "openra-ra.desktop",
   "rename-icon": "openra-ra",
@@ -209,6 +209,10 @@
       "buildsystem": "simple",
       "build-commands": [
         "/usr/lib/sdk/mono5/install.sh",
+        "cp /usr/lib/sdk/mono5/lib/libmono-btls-shared.so /app/lib/",
+        "cp /usr/lib/sdk/mono5/lib/mono/4.5/cert-sync.exe /app/lib/mono/4.5/",
+        "cp /usr/lib/sdk/mono5/bin/cert-sync /app/bin/",
+        "sed -i 's,/usr/lib/sdk/mono5/,/app/,g' /app/bin/cert-sync",
         "cp -ar /usr/lib/sdk/mono5/lib/mono/gac/System.Drawing /app/lib/mono/gac/",
         "rm -f /app/lib/mono/gac/System.Drawing/*/*.pdb",
         "cp -ar /usr/lib/sdk/mono5/lib/mono/gac/System.Numerics /app/lib/mono/gac/",
@@ -218,6 +222,40 @@
         "no-debuginfo": true,
         "strip": true
       }
+    },
+    {
+      "name": "cert-sync-wrapper",
+      "buildsystem": "simple",
+      "sources": [
+        {
+          "type": "script",
+          "commands": [
+            "cert-sync --user --quiet /etc/ssl/certs/ca-certificates.crt",
+            "exec openra-ra \"$@\""
+          ],
+          "dest-filename": "openra-ra-wrapper"
+        },
+        {
+          "type": "script",
+          "commands": [
+            "cert-sync --user --quiet /etc/ssl/certs/ca-certificates.crt",
+            "exec openra-cnc \"$@\""
+          ],
+          "dest-filename": "openra-cnc-wrapper"
+        },
+        {
+          "type": "script",
+          "commands": [
+            "cert-sync --user --quiet /etc/ssl/certs/ca-certificates.crt",
+            "exec openra-d2k \"$@\""
+          ],
+          "dest-filename": "openra-d2k-wrapper"
+        }
+      ],
+      "build-commands": [
+        "install -Dm0755 -t /app/bin openra-*-wrapper",
+        "sed -i 's/Exec=openra-.*/\\0-wrapper/' /app/share/applications/openra-{ra,cnc,d2k}.desktop"
+      ]
     },
     {
       "name": "export-other-mods",
