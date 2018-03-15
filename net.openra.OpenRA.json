@@ -81,8 +81,8 @@
         {
           "type": "git",
           "url": "https://github.com/OpenRA/OpenRA",
-          "commit": "299b7570456decb5016d3405de114edddb877707",
-          "branch": "release-20180218"
+          "commit": "e68173b73f80740001e8aa88395e2165ab97018b",
+          "branch": "release-20180307"
         },
         {
           "type": "shell",
@@ -180,9 +180,9 @@
         },
         {
           "type": "archive",
-          "url": "https://geolite.maxmind.com/download/geoip/database/GeoLite2-Country_20180206.tar.gz",
+          "url": "https://geolite.maxmind.com/download/geoip/database/GeoLite2-Country_20180306.tar.gz",
           "dest": "thirdparty/download/",
-          "sha256": "0e0611d5f86e08432e68a1989923a61357deceb81eecabe45e89b3da79af169c"
+          "sha256": "7f4b455ba611b623ae9f45afe5249aae9f881befd4f78489d21dee6f94faf1fa"
         },
         {
           "type": "shell",
