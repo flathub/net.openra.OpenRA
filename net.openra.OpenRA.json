@@ -29,8 +29,8 @@
       "sources": [
         {
           "type": "archive",
-          "url": "https://download.mono-project.com/sources/libgdiplus/libgdiplus0-4.2.tar.gz",
-          "sha256": "f332b9b8b44fd1c50b8d8d01a7296360b806c790b8297614739b3de1edbadfeb"
+          "url": "https://download.mono-project.com/sources/libgdiplus/libgdiplus0-5.6.tar.gz",
+          "sha256": "e1f2c0443af8d37b1a2971feb8826c82e932cff36dab814b94fce22f4d3dc53a"
         }
       ],
       "cleanup": [ "/include", "/lib/*.a", "/lib/*.la", "/lib/pkgconfig", "/share/man" ]
@@ -81,8 +81,8 @@
         {
           "type": "git",
           "url": "https://github.com/OpenRA/OpenRA",
-          "commit": "e68173b73f80740001e8aa88395e2165ab97018b",
-          "branch": "release-20180307"
+          "commit": "65fc9af8b5f83397b86fa606a1ff77f67ac70f4e",
+          "branch": "release-20180923"
         },
         {
           "type": "shell",
@@ -180,9 +180,9 @@
         },
         {
           "type": "archive",
-          "url": "https://geolite.maxmind.com/download/geoip/database/GeoLite2-Country_20180306.tar.gz",
+          "url": "https://geolite.maxmind.com/download/geoip/database/GeoLite2-Country_20180911.tar.gz",
           "dest": "thirdparty/download/",
-          "sha256": "7f4b455ba611b623ae9f45afe5249aae9f881befd4f78489d21dee6f94faf1fa"
+          "sha256": "64e54ec6327989fa60be32638f49e139f7c1878e40f98413e0aeb5bc3550054f"
         },
         {
           "type": "shell",
