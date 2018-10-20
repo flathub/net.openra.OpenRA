@@ -4,7 +4,6 @@
   "runtime-version": "1.6",
   "sdk": "org.freedesktop.Sdk",
   "command": "openra-ra-wrapper",
-  "rename-appdata-file": "openra-ra.appdata.xml",
   "rename-desktop-file": "openra-ra.desktop",
   "rename-icon": "openra-ra",
   "sdk-extensions": ["org.freedesktop.Sdk.Extension.mono5"],
@@ -260,11 +259,17 @@
     {
       "name": "export-other-mods",
       "buildsystem": "simple",
+      "sources": [
+        {
+          "type": "file",
+          "path": "net.openra.OpenRA.appdata.xml"
+        }
+      ],
       "build-commands": [
-        "sed -i 's/<name>OpenRA - Red Alert/<name>OpenRA/' /app/share/appdata/openra-ra.appdata.xml",
-        "sed -i 's/<id>openra/<id>net.openra.OpenRA.openra/' /app/share/appdata/openra-{cnc,d2k}.appdata.xml",
         "sed -i 's/Icon=openra/Icon=net.openra.OpenRA.openra/' /app/share/applications/openra-{cnc,d2k}.desktop",
         "for f in /app/share/icons/hicolor/*/apps/openra-{cnc,d2k}.* /app/share/applications/openra-{cnc,d2k}.desktop; do mv \"$f\" \"$(echo \"$f\" | sed 's/openra/net.openra.OpenRA.openra/')\"; done"
+       "install -Dm0644 -t /app/share/appdata net.openra.OpenRA.appdata.xml",
+       "rm /app/share/appdata/openra-{ra,cnc,d2k}.appdata.xml"
       ]
     }
   ]
