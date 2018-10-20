@@ -4,8 +4,8 @@
   "runtime-version": "1.6",
   "sdk": "org.freedesktop.Sdk",
   "command": "openra-ra-wrapper",
-  "rename-desktop-file": "openra-ra.desktop",
-  "rename-icon": "openra-ra",
+  "rename-desktop-file": "net.openra.OpenRA.openra-ra.desktop",
+  "rename-icon": "net.openra.OpenRA.openra-ra",
   "sdk-extensions": ["org.freedesktop.Sdk.Extension.mono5"],
   "finish-args": [
     "--socket=x11",
@@ -257,7 +257,7 @@
       ]
     },
     {
-      "name": "export-other-mods",
+      "name": "export",
       "buildsystem": "simple",
       "sources": [
         {
@@ -266,8 +266,8 @@
         }
       ],
       "build-commands": [
-        "sed -i 's/Icon=openra/Icon=net.openra.OpenRA.openra/' /app/share/applications/openra-{cnc,d2k}.desktop",
-        "for f in /app/share/icons/hicolor/*/apps/openra-{cnc,d2k}.* /app/share/applications/openra-{cnc,d2k}.desktop; do mv \"$f\" \"$(echo \"$f\" | sed 's/openra/net.openra.OpenRA.openra/')\"; done"
+        "sed -i 's/Icon=openra/Icon=net.openra.OpenRA.openra/' /app/share/applications/openra-{ra,cnc,d2k}.desktop",
+        "for f in /app/share/icons/hicolor/*/apps/openra-{ra,cnc,d2k}.* /app/share/applications/openra-{ra,cnc,d2k}.desktop; do mv \"$f\" \"$(echo \"$f\" | sed 's/openra/net.openra.OpenRA.openra/')\"; done",
        "install -Dm0644 -t /app/share/appdata net.openra.OpenRA.appdata.xml",
        "rm /app/share/appdata/openra-{ra,cnc,d2k}.appdata.xml"
       ]
