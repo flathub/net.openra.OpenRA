@@ -127,7 +127,7 @@
           "type": "file",
           "url": "https://nuget.org/api/v2/package/NUnit.Console/3.0.1",
           "dest-filename": "thirdparty/download/NUnit.Console.zip",
-          "sha256": "b744e7921a6d8e4fccd4c05cf50b040b6c8d11c4c7346ed1f6ba242b2ac78b94"
+          "sha256": "164ce9124d769ac994a79234e59ce51a21be5089e86210666abfef0791ade07f"
         },
         {
           "type": "file",
