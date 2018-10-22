@@ -109,7 +109,7 @@
           "type": "file",
           "url": "https://nuget.org/api/v2/package/MaxMind.Db/2.0.0",
           "dest-filename": "thirdparty/download/MaxMind.Db.zip",
-          "sha256": "98595abd21c735fe8bb84911a7b254f5d37c910818411f8edded7378e3e7c181"
+          "sha256": "095d62c6ecda38c1e8fe79935b4eaf228d2637f9498caec48b8b48a0aba6d5aa"
         },
         {
           "type": "file",
