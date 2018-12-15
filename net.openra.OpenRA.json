@@ -91,7 +91,7 @@
           "type": "file",
           "url": "https://nuget.org/api/v2/package/StyleCopPlus.MSBuild/4.7.49.5",
           "dest-filename": "thirdparty/download/StyleCopPlus.MSBuild.zip",
-          "sha256": "b98a8ed20c5e82ff5fe6c2a52ecd45bffd4d4ab284611f35a25889c3bba364c3"
+          "sha256": "c98225a744586907bed767a4cb2a756ff3a8d13ff355b40ecc43c3e2537683d9"
         },
         {
           "type": "file",
@@ -103,19 +103,19 @@
           "type": "file",
           "url": "https://nuget.org/api/v2/package/SharpZipLib/0.86.0",
           "dest-filename": "thirdparty/download/SharpZipLib.zip",
-          "sha256": "5906c248bb986d50489192f490f94d2331d04e7d34337bc3c0d64df6d0008207"
+          "sha256": "75045aa2148e25cb895bcca67cf39083a98c808a5bf7fd58d84e08f582787b9e"
         },
         {
           "type": "file",
           "url": "https://nuget.org/api/v2/package/MaxMind.Db/2.0.0",
           "dest-filename": "thirdparty/download/MaxMind.Db.zip",
-          "sha256": "095d62c6ecda38c1e8fe79935b4eaf228d2637f9498caec48b8b48a0aba6d5aa"
+          "sha256": "98595abd21c735fe8bb84911a7b254f5d37c910818411f8edded7378e3e7c181"
         },
         {
           "type": "file",
           "url": "https://nuget.org/api/v2/package/SharpFont/4.0.1",
           "dest-filename": "thirdparty/download/SharpFont.zip",
-          "sha256": "48eff311d5fb4fe88612352462317a7e6a73a148c755afc6141c02ce4965a3f9"
+          "sha256": "bb3817022f7304a0cd93d7f3acb405785f51b8481ce1c35432803f2c45fffd3e"
         },
         {
           "type": "file",
@@ -133,13 +133,13 @@
           "type": "file",
           "url": "https://nuget.org/api/v2/package/Open.Nat/2.1.0",
           "dest-filename": "thirdparty/download/Open.Nat.zip",
-          "sha256": "93bb2ac468937855215ef28e77ae06df03e1bab8f09b3459e9bc31cf1d18cdcb"
+          "sha256": "c532dee1478b4a7e28aa4797a5efc3f829a6bd0cc0af646aac001ce183f0e3e2"
         },
         {
           "type": "file",
           "url": "https://nuget.org/api/v2/package/FuzzyLogicLibrary/1.2.0",
           "dest-filename": "thirdparty/download/FuzzyLogicLibrary.zip",
-          "sha256": "b464509236260f53d963771ed99410a7e1cdbd268a2bde43b189e7d15044a174"
+          "sha256": "ca8caf33637ae661dfdd5797589f034950d2fcb4f7192ee858830f6e2525df3f"
         },
         {
           "type": "file",
@@ -175,13 +175,13 @@
           "type": "file",
           "url": "https://nuget.org/api/v2/package/rix0rrr.BeaconLib/1.0.1",
           "dest-filename": "thirdparty/download/rix0rrr.BeaconLib.zip",
-          "sha256": "e8e126b98ae7676cb0434455aa8a41c17a927c1b40c4cf368f9527af6bc251f2"
+          "sha256": "ed4d44f176af53a2fcb31b35def9a5af4cd42bb3639bc2c458f843d991f074ec"
         },
         {
           "type": "archive",
-          "url": "https://geolite.maxmind.com/download/geoip/database/GeoLite2-Country_20180911.tar.gz",
+          "url": "https://geolite.maxmind.com/download/geoip/database/GeoLite2-Country_20181211.tar.gz",
           "dest": "thirdparty/download/",
-          "sha256": "64e54ec6327989fa60be32638f49e139f7c1878e40f98413e0aeb5bc3550054f"
+          "sha256": "9e71cdb9cd870e1209001cbcfb0cb4dd3a58ff2d8ab85320682680aab0c250fc"
         },
         {
           "type": "shell",
