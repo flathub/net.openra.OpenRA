@@ -24,7 +24,7 @@
   },
   "modules": [
     {
-      "name": "libgdiplus",
+      "name": "libgdiplus0",
       "sources": [
         {
           "type": "archive",
