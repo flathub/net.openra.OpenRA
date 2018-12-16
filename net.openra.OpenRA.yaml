@@ -68,8 +68,8 @@ modules:
   sources:
   - type: git
     url: https://github.com/OpenRA/OpenRA
-    commit: 65fc9af8b5f83397b86fa606a1ff77f67ac70f4e
-    branch: release-20180923
+    commit: f14414d5af27c2cdb20b763ca23b9916f2fbcca8
+    branch: release-20181215
   - type: shell
     commands:
     - mkdir thirdparty/download
