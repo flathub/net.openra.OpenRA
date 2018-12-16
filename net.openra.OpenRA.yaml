@@ -186,7 +186,7 @@ modules:
     dest-filename: openra-d2k-wrapper
   build-commands:
   - install -Dm0755 -t /app/bin openra-*-wrapper
-  - sed -i 's/Exec=openra-.*/\0-wrapper/' /app/share/applications/openra-{ra,cnc,d2k}.desktop
+  - sed -i 's/Exec=openra-[^ ]*/\0-wrapper/' /app/share/applications/openra-{ra,cnc,d2k}.desktop
 - name: export
   buildsystem: simple
   sources:
