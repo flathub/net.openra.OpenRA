@@ -141,8 +141,9 @@ modules:
   - type: shell
     commands:
     - gzip thirdparty/download/GeoLite2-Country.mmdb
-  - type: patch
-    path: OpenRA-lua-search-path.patch
+  - type: shell
+    commands:
+    - sed -e 's,^locations=",\0/app/lib ,' -i thirdparty/configure-native-deps.sh
   buildsystem: simple
   build-commands:
   - make version
