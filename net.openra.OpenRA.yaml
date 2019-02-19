@@ -135,9 +135,9 @@ modules:
     dest-filename: thirdparty/download/rix0rrr.BeaconLib.zip
     sha256: ed4d44f176af53a2fcb31b35def9a5af4cd42bb3639bc2c458f843d991f074ec
   - type: archive
-    url: https://geolite.maxmind.com/download/geoip/database/GeoLite2-Country_20181211.tar.gz
+    url: https://geolite.maxmind.com/download/geoip/database/GeoLite2-Country_20190212.tar.gz
     dest: thirdparty/download/
-    sha256: 9e71cdb9cd870e1209001cbcfb0cb4dd3a58ff2d8ab85320682680aab0c250fc
+    sha256: 654ac2722dba635161fd789ff96c2685bba20c4fda06902d1687b0606388646e
   - type: shell
     commands:
     - gzip thirdparty/download/GeoLite2-Country.mmdb
