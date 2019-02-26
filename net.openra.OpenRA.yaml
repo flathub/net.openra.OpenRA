@@ -12,7 +12,7 @@ finish-args:
 - --share=ipc
 - --socket=wayland
 - --socket=pulseaudio
-- --device=dri
+- --device=all
 - --share=network
 - --persist=.openra
 build-options:
