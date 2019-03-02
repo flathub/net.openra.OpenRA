@@ -69,8 +69,8 @@ modules:
   sources:
   - type: git
     url: https://github.com/OpenRA/OpenRA
-    commit: d3c5aa53be09779b8ad6a4729df232bd16903858
-    branch: playtest-20190209
+    commit: 77b91420a935686a37da3598c40ef9315d081f83
+    branch: playtest-20190302
   - type: shell
     commands:
     - mkdir thirdparty/download
@@ -135,9 +135,9 @@ modules:
     dest-filename: thirdparty/download/rix0rrr.BeaconLib.zip
     sha256: ed4d44f176af53a2fcb31b35def9a5af4cd42bb3639bc2c458f843d991f074ec
   - type: archive
-    url: https://geolite.maxmind.com/download/geoip/database/GeoLite2-Country_20190212.tar.gz
+    url: https://geolite.maxmind.com/download/geoip/database/GeoLite2-Country_20190226.tar.gz
     dest: thirdparty/download/
-    sha256: 654ac2722dba635161fd789ff96c2685bba20c4fda06902d1687b0606388646e
+    sha256: 4f3e8c61739c0441afc5a8793f5fffaa889f42b26a545662ea6751023fe17e2b
   - type: shell
     commands:
     - gzip thirdparty/download/GeoLite2-Country.mmdb
