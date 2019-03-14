@@ -146,13 +146,11 @@ modules:
     - sed -e 's,^locations=",\0/app/lib ,' -i thirdparty/configure-native-deps.sh
   buildsystem: simple
   build-commands:
-  - make version
   - touch thirdparty/download/GeoLite2-Country.mmdb.gz
-  - make dependencies
+  - make version
   - make
   - make prefix=/app install
   - make prefix=/app install-linux-shortcuts
-  - make prefix=/app install-linux-appdata
 - name: mono-runtime
   buildsystem: simple
   build-commands:
@@ -202,5 +200,4 @@ modules:
       mv "$f" "$(echo "$f" | sed 's/openra/net.openra.OpenRA.openra/')"
     done
   - install -Dm0644 -t /app/share/appdata net.openra.OpenRA.appdata.xml
-  - rm /app/share/appdata/openra-{ra,cnc,d2k}.appdata.xml
 
