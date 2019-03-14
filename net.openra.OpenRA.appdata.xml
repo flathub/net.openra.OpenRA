@@ -49,6 +49,7 @@
   <url type="homepage">https://www.openra.net</url>
   <update_contact>paul_at_chote.net</update_contact>
   <releases>
+    <release version="release-20190314" date="2019-03-14"/>
     <release version="release-20181215" date="2018-12-15"/>
     <release version="release-20180923" date="2018-09-23"/>
   </releases>
