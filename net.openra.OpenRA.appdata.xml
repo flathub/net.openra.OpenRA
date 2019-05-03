@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop-application">
   <id>net.openra.OpenRA</id>
+  <provides>
+    <id>openra.desktop</id>
+    <id>openra-ra.desktop</id>
+    <id>openra-cnc.desktop</id>
+    <id>openra-d2k.desktop</id>
+  </provides>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-3.0</project_license>
   <name>OpenRA</name>
