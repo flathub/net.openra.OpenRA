@@ -153,6 +153,7 @@ modules:
       - make
       - make prefix=/app install
       - make prefix=/app install-linux-shortcuts
+      - make prefix=/app install-linux-mime
 
   - name: mono-runtime
     buildsystem: simple
@@ -200,7 +201,7 @@ modules:
     build-commands:
       - sed -i 's/Icon=openra/Icon=net.openra.OpenRA.openra/' /app/share/applications/openra-{ra,cnc,d2k}.desktop
       - |
-        for f in /app/share/icons/hicolor/*/apps/openra-{ra,cnc,d2k}.* /app/share/applications/openra-{ra,cnc,d2k}.desktop
+        for f in /app/share/icons/hicolor/*/apps/openra-{ra,cnc,d2k}.* /app/share/applications/openra-{ra,cnc,d2k}.desktop /app/share/mime/packages/openra-{ra,cnc,d2k}.xml
         do
           mv "$f" "$(echo "$f" | sed 's/openra/net.openra.OpenRA.openra/')"
         done
