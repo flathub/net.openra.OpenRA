@@ -213,4 +213,4 @@ modules:
         do
           mv "$f" "$(echo "$f" | sed 's/openra/net.openra.OpenRA.openra/')"
         done
-      - install -Dm0644 -t /app/share/appdata net.openra.OpenRA.appdata.xml
+      - install -Dm0644 -t /app/share/metainfo net.openra.OpenRA.appdata.xml
