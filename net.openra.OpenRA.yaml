@@ -87,8 +87,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/OpenRA/OpenRA
-        commit: 2b4ad71151233fb128c0f9a2fd2260c26c34ab60
-        branch: playtest-20190825
+        commit: 3deaf6c7bb71696423a7079d388a99944d8e395b
+        branch: playtest-20191021
       - type: shell
         commands:
           - mkdir -p LocalNugetPackages
@@ -124,21 +124,21 @@ modules:
         dest-filename: thirdparty/download/FuzzyLogicLibrary.zip
         sha256: ca8caf33637ae661dfdd5797589f034950d2fcb4f7192ee858830f6e2525df3f
       - type: file
-        url: https://github.com/OpenRA/SDL2-CS/releases/download/20161223/SDL2-CS.dll
+        url: https://github.com/OpenRA/SDL2-CS/releases/download/20190907/SDL2-CS.dll
         dest-filename: thirdparty/download/SDL2-CS.dll
         sha256: b06c14a771d14cb37210f476dfd973d4e7d80d97f90566bd5bc78996ade4f7a0
       - type: file
-        url: https://github.com/OpenRA/SDL2-CS/releases/download/20161223/SDL2-CS.dll.config
+        url: https://github.com/OpenRA/SDL2-CS/releases/download/20190907/SDL2-CS.dll.config
         dest-filename: thirdparty/download/SDL2-CS.dll.config
-        sha256: eff0594f7e86d40a94c1b28f8db87478f3de1cf0857f3d46e384bcc6744ce094
+        sha256: 7d75ef450e1ceb3f61e77a0513b034a5bc2e754065182bc1bc9134ac664da6bd
       - type: file
-        url: https://github.com/OpenRA/OpenAL-CS/releases/download/20180106/OpenAL-CS.dll
+        url: https://github.com/OpenRA/OpenAL-CS/releases/download/20190907/OpenAL-CS.dll
         dest-filename: thirdparty/download/OpenAL-CS.dll
         sha256: 4cc20a160107748a8e13dfc5e29f9daacf2675e4b302e066bfbe4a1be0596015
       - type: file
-        url: https://github.com/OpenRA/OpenAL-CS/releases/download/20180106/OpenAL-CS.dll.config
+        url: https://github.com/OpenRA/OpenAL-CS/releases/download/20190907/OpenAL-CS.dll.config
         dest-filename: thirdparty/download/OpenAL-CS.dll.config
-        sha256: 58eaf46a749e466fce0a0ec43184073b0153aa8eb24c865219491bc1db989571
+        sha256: 12704a902127e3f67e7d9a3e2331bf2d65e008b59ab96d132807add14e0f2a1c
       - type: file
         url: https://github.com/OpenRA/Eluant/releases/download/20160124/Eluant.dll
         dest-filename: thirdparty/download/Eluant.dll
@@ -148,9 +148,9 @@ modules:
         dest-filename: thirdparty/download/rix0rrr.BeaconLib.zip
         sha256: ed4d44f176af53a2fcb31b35def9a5af4cd42bb3639bc2c458f843d991f074ec
       - type: archive
-        url: https://geolite.maxmind.com/download/geoip/database/GeoLite2-Country_20190820.tar.gz
+        url: https://geolite.maxmind.com/download/geoip/database/GeoLite2-Country_20191022.tar.gz
         dest: thirdparty/download/
-        sha256: 8f7756000e2d823256e22af4d2dd64eabb891d15c44dd0675903640a51dccb72
+        sha256: 4d69a140bc3a06ec1d7224a20b365fb919918ed50e9239311738b18915b9a7ec
       - type: shell
         commands:
           - gzip thirdparty/download/GeoLite2-Country.mmdb
