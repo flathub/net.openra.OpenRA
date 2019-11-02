@@ -24,8 +24,8 @@ modules:
   - name: libgdiplus0
     sources:
       - type: archive
-        url: https://download.mono-project.com/sources/libgdiplus/libgdiplus0-5.6.tar.gz
-        sha256: e1f2c0443af8d37b1a2971feb8826c82e932cff36dab814b94fce22f4d3dc53a
+        url: https://download.mono-project.com/sources/libgdiplus/libgdiplus0-6.0.4.tar.gz
+        sha256: b75c38c9765d5b3e2fb3da4435f169c732983878c0f94b8bf9012137022abf29
     cleanup:
       - /include
       - /lib/*.a
@@ -137,9 +137,9 @@ modules:
         dest-filename: thirdparty/download/rix0rrr.BeaconLib.zip
         sha256: ed4d44f176af53a2fcb31b35def9a5af4cd42bb3639bc2c458f843d991f074ec
       - type: archive
-        url: https://geolite.maxmind.com/download/geoip/database/GeoLite2-Country_20191008.tar.gz
+        url: https://geolite.maxmind.com/download/geoip/database/GeoLite2-Country_20191029.tar.gz
         dest: thirdparty/download/
-        sha256: beae210394670288c61b2d402cb6084ffa24aba27ff4920b18a9c4114f8a96e6
+        sha256: 691c434854edf33f0c87583741f334103275b082a8115dfff7553e29067c4ded
       - type: shell
         commands:
         - gzip thirdparty/download/GeoLite2-Country.mmdb
