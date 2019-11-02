@@ -40,8 +40,8 @@ modules:
   - name: libgdiplus0
     sources:
       - type: archive
-        url: https://download.mono-project.com/sources/libgdiplus/libgdiplus0-6.0.2.tar.gz
-        sha256: 716cf8fbbca6963022d5f1510b58a44cf8f40380cf6f7433d68c3db651f6f904
+        url: https://download.mono-project.com/sources/libgdiplus/libgdiplus0-6.0.4.tar.gz
+        sha256: b75c38c9765d5b3e2fb3da4435f169c732983878c0f94b8bf9012137022abf29
     cleanup:
       - /include
       - /lib/*.a
@@ -87,8 +87,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/OpenRA/OpenRA
-        commit: 3deaf6c7bb71696423a7079d388a99944d8e395b
-        branch: playtest-20191021
+        commit: 33b1e7429692ccaa260966f007398fee78d83570
+        branch: playtest-20191102
       - type: shell
         commands:
           - mkdir -p LocalNugetPackages
@@ -148,9 +148,9 @@ modules:
         dest-filename: thirdparty/download/rix0rrr.BeaconLib.zip
         sha256: ed4d44f176af53a2fcb31b35def9a5af4cd42bb3639bc2c458f843d991f074ec
       - type: archive
-        url: https://geolite.maxmind.com/download/geoip/database/GeoLite2-Country_20191022.tar.gz
+        url: https://geolite.maxmind.com/download/geoip/database/GeoLite2-Country_20191029.tar.gz
         dest: thirdparty/download/
-        sha256: 4d69a140bc3a06ec1d7224a20b365fb919918ed50e9239311738b18915b9a7ec
+        sha256: 691c434854edf33f0c87583741f334103275b082a8115dfff7553e29067c4ded
       - type: shell
         commands:
           - gzip thirdparty/download/GeoLite2-Country.mmdb
