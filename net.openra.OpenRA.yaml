@@ -5,6 +5,8 @@ sdk: org.freedesktop.Sdk
 command: openra-ra-wrapper
 rename-desktop-file: net.openra.OpenRA.openra-ra.desktop
 rename-icon: net.openra.OpenRA.openra-ra
+# Use writable-sdk to install MSBuild for Mono
+writable-sdk: true
 sdk-extensions:
   - org.freedesktop.Sdk.Extension.mono5
 finish-args:
@@ -21,6 +23,20 @@ build-options:
   env:
     PKG_CONFIG_PATH: /app/lib/pkgconfig:/app/share/pkgconfig:/usr/lib/pkgconfig:/usr/share/pkgconfig:/usr/lib/sdk/mono5/lib/pkgconfig
 modules:
+  - name: msbuild
+    sources:
+      - type: file
+        url: http://download.mono-project.com/repo/ubuntu/pool/main/m/msbuild/msbuild_16.3+xamarinxplat.2019.08.08.00.55-0xamarin2+debian10b1_all.deb
+        sha256: f85197948f5026d0a4ef916124a28affbe53a200b52be629862d44e642a7ff63
+    buildsystem: simple
+    build-commands:
+      - ar x msbuild_*.deb
+      - tar xf data.tar.xz
+      - sed -e 's|/usr/|/usr/lib/sdk/mono5/|g' -i usr/bin/msbuild
+      - mv /usr/lib/sdk/mono5/lib/mono/msbuild/15.0 /usr/lib/sdk/mono5/lib/mono/msbuild/Current
+      - mv /usr/lib/sdk/mono5/lib/mono/xbuild/15.0 /usr/lib/sdk/mono5/lib/mono/xbuild/Current
+      - cp -a usr/. /usr/lib/sdk/mono5/
+
   - name: libgdiplus0
     sources:
       - type: archive
@@ -71,31 +87,26 @@ modules:
     sources:
       - type: git
         url: https://github.com/OpenRA/OpenRA
-        commit: 485103d09bf929b46deb3559d8e768c5852212e3
-        branch: release-20190314
+        commit: a47969b31b66455ac6f61796b26c753f14bf5bcc
+        branch: release-20191117
       - type: shell
         commands:
+          - mkdir -p LocalNugetPackages
           - mkdir thirdparty/download
       - type: file
-        url: https://nuget.org/api/v2/package/StyleCopPlus.MSBuild/4.7.49.5
-        dest-filename: thirdparty/download/StyleCopPlus.MSBuild.zip
-        sha256: c98225a744586907bed767a4cb2a756ff3a8d13ff355b40ecc43c3e2537683d9
+        path: nuget.config
       - type: file
-        url: https://nuget.org/api/v2/package/StyleCop.MSBuild/4.7.49.0
-        dest-filename: thirdparty/download/StyleCop.MSBuild.zip
-        sha256: 8d7c7ad97e740f08996186bfc33cd995b5d6b99ef3ed32326e40c67148d650b2
+        url: https://www.nuget.org/api/v2/package/StyleCop.Analyzers/1.1.118
+        dest-filename: LocalNugetPackages/stylecop.analyzers.1.1.118.nupkg
+        sha256: 0a30b57f9cf4b0fd7917a15e5ea2033ad64b1ea8239904f3a6c22b464c574442
       - type: file
-        url: https://nuget.org/api/v2/package/SharpZipLib/0.86.0
+        url: https://www.nuget.org/api/v2/package/SharpZipLib/1.1.0
         dest-filename: thirdparty/download/SharpZipLib.zip
-        sha256: 75045aa2148e25cb895bcca67cf39083a98c808a5bf7fd58d84e08f582787b9e
+        sha256: 0f4bb6666a67fde963d90f4a96fd68eb1d098ef55a936d6e712cea74d4b798ca
       - type: file
         url: https://nuget.org/api/v2/package/MaxMind.Db/2.0.0
         dest-filename: thirdparty/download/MaxMind.Db.zip
         sha256: 98595abd21c735fe8bb84911a7b254f5d37c910818411f8edded7378e3e7c181
-      - type: file
-        url: https://nuget.org/api/v2/package/SharpFont/4.0.1
-        dest-filename: thirdparty/download/SharpFont.zip
-        sha256: bb3817022f7304a0cd93d7f3acb405785f51b8481ce1c35432803f2c45fffd3e
       - type: file
         url: https://nuget.org/api/v2/package/NUnit/3.0.1
         dest-filename: thirdparty/download/NUnit.zip
@@ -113,21 +124,21 @@ modules:
         dest-filename: thirdparty/download/FuzzyLogicLibrary.zip
         sha256: ca8caf33637ae661dfdd5797589f034950d2fcb4f7192ee858830f6e2525df3f
       - type: file
-        url: https://github.com/OpenRA/SDL2-CS/releases/download/20161223/SDL2-CS.dll
+        url: https://github.com/OpenRA/SDL2-CS/releases/download/20190907/SDL2-CS.dll
         dest-filename: thirdparty/download/SDL2-CS.dll
         sha256: b06c14a771d14cb37210f476dfd973d4e7d80d97f90566bd5bc78996ade4f7a0
       - type: file
-        url: https://github.com/OpenRA/SDL2-CS/releases/download/20161223/SDL2-CS.dll.config
+        url: https://github.com/OpenRA/SDL2-CS/releases/download/20190907/SDL2-CS.dll.config
         dest-filename: thirdparty/download/SDL2-CS.dll.config
-        sha256: eff0594f7e86d40a94c1b28f8db87478f3de1cf0857f3d46e384bcc6744ce094
+        sha256: 7d75ef450e1ceb3f61e77a0513b034a5bc2e754065182bc1bc9134ac664da6bd
       - type: file
-        url: https://github.com/OpenRA/OpenAL-CS/releases/download/20151227/OpenAL-CS.dll
+        url: https://github.com/OpenRA/OpenAL-CS/releases/download/20190907/OpenAL-CS.dll
         dest-filename: thirdparty/download/OpenAL-CS.dll
-        sha256: d33391fd954c670a3ba3db2d1553015f78652ea33ca3eaf949da6377ec947e53
+        sha256: 4cc20a160107748a8e13dfc5e29f9daacf2675e4b302e066bfbe4a1be0596015
       - type: file
-        url: https://github.com/OpenRA/OpenAL-CS/releases/download/20151227/OpenAL-CS.dll.config
+        url: https://github.com/OpenRA/OpenAL-CS/releases/download/20190907/OpenAL-CS.dll.config
         dest-filename: thirdparty/download/OpenAL-CS.dll.config
-        sha256: 58eaf46a749e466fce0a0ec43184073b0153aa8eb24c865219491bc1db989571
+        sha256: 12704a902127e3f67e7d9a3e2331bf2d65e008b59ab96d132807add14e0f2a1c
       - type: file
         url: https://github.com/OpenRA/Eluant/releases/download/20160124/Eluant.dll
         dest-filename: thirdparty/download/Eluant.dll
@@ -137,15 +148,12 @@ modules:
         dest-filename: thirdparty/download/rix0rrr.BeaconLib.zip
         sha256: ed4d44f176af53a2fcb31b35def9a5af4cd42bb3639bc2c458f843d991f074ec
       - type: archive
-        url: https://geolite.maxmind.com/download/geoip/database/GeoLite2-Country_20191029.tar.gz
+        url: https://geolite.maxmind.com/download/geoip/database/GeoLite2-Country_20191112.tar.gz
         dest: thirdparty/download/
-        sha256: 691c434854edf33f0c87583741f334103275b082a8115dfff7553e29067c4ded
+        sha256: 415e0e349158a7a742b18d405dcf9cd2eb94ee91ba8f1ab5441c2acd708dd2dd
       - type: shell
         commands:
-        - gzip thirdparty/download/GeoLite2-Country.mmdb
-      - type: shell
-        commands:
-          - sed -e 's,^locations=",\0/app/lib ,' -i thirdparty/configure-native-deps.sh
+          - gzip thirdparty/download/GeoLite2-Country.mmdb
     buildsystem: simple
     build-commands:
       - touch thirdparty/download/GeoLite2-Country.mmdb.gz
