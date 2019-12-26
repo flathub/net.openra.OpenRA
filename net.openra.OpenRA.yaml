@@ -1,14 +1,10 @@
 app-id: net.openra.OpenRA
 runtime: org.freedesktop.Platform
-runtime-version: '18.08'
+runtime-version: '19.08'
 sdk: org.freedesktop.Sdk
 command: openra-ra-wrapper
 rename-desktop-file: net.openra.OpenRA.openra-ra.desktop
 rename-icon: net.openra.OpenRA.openra-ra
-# Use writable-sdk to install MSBuild for Mono
-writable-sdk: true
-sdk-extensions:
-  - org.freedesktop.Sdk.Extension.mono5
 finish-args:
   - --socket=x11
   - --share=ipc
@@ -17,37 +13,67 @@ finish-args:
   - --device=all
   - --share=network
   - --persist=.openra
-build-options:
-  append-path: /usr/lib/sdk/mono5/bin
-  append-ld-library-path: /usr/lib/sdk/mono5/lib
-  env:
-    PKG_CONFIG_PATH: /app/lib/pkgconfig:/app/share/pkgconfig:/usr/lib/pkgconfig:/usr/share/pkgconfig:/usr/lib/sdk/mono5/lib/pkgconfig
+cleanup:
+  - '*.a'
+  - '*.la'
+  - /include
+  - /lib/pkgconfig
+  - /share/man
+cleanup-commands:
+  - >
+    find /app/bin -type f -not -name 'openra*' -not -name mono -not -name mono-sgen
+    -not -name cert-sync -print0 | xargs -0 rm -rf
+  - find /app/lib/mono -mindepth 1 -maxdepth 1 -not -name gac -not -name 4.5 -print0 | xargs -0 rm -rf
+  - >
+    find /app/lib/mono/gac -mindepth 1 -maxdepth 1 -not -name System -not -name System.Core
+    -not -name System.Xml -not -name System.Configuration -not -name I18N -not -name I18N.CJK
+    -not -name I18N.MidEast -not -name I18N.Other -not -name I18N.Rare -not -name I18N.West
+    -not -name Accessibility -not -name Mono.Cairo -not -name Mono.Posix -not -name Mono.CSharp
+    -not -name System.Drawing -not -name System.Numerics  -not -name Mono.Security  -print0 | xargs -0 rm -rf
+  - find /app/lib/mono -type f -name '*.exe' -not -name cert-sync.exe -print0 | xargs -0 rm -rf
 modules:
-  - name: msbuild
-    sources:
-      - type: file
-        url: http://download.mono-project.com/repo/ubuntu/pool/main/m/msbuild/msbuild_16.3+xamarinxplat.2019.08.08.00.55-0xamarin2+debian10b1_all.deb
-        sha256: f85197948f5026d0a4ef916124a28affbe53a200b52be629862d44e642a7ff63
-    buildsystem: simple
-    build-commands:
-      - ar x msbuild_*.deb
-      - tar xf data.tar.xz
-      - sed -e 's|/usr/|/usr/lib/sdk/mono5/|g' -i usr/bin/msbuild
-      - mv /usr/lib/sdk/mono5/lib/mono/msbuild/15.0 /usr/lib/sdk/mono5/lib/mono/msbuild/Current
-      - mv /usr/lib/sdk/mono5/lib/mono/xbuild/15.0 /usr/lib/sdk/mono5/lib/mono/xbuild/Current
-      - cp -a usr/. /usr/lib/sdk/mono5/
-
   - name: libgdiplus0
     sources:
       - type: archive
         url: https://download.mono-project.com/sources/libgdiplus/libgdiplus0-6.0.4.tar.gz
         sha256: b75c38c9765d5b3e2fb3da4435f169c732983878c0f94b8bf9012137022abf29
+
+  - name: mono
+    sources:
+      - type: archive
+        url: https://download.mono-project.com/sources/mono/mono-6.6.0.161.tar.xz
+        sha256: 778badcf2f201df7efa5e031d01802ea8c29818de66e5e7e9f85212c2277d85f
+      - type: shell
+        commands:
+          - mkdir flatpak-bin
+          - ln -s /usr/bin/python3 flatpak-bin/python
+    build-options:
+      append-path: /run/build/mono/flatpak-bin
+    config-opts:
+      - --disable-dependency-tracking
+      - --without-mcs-docs
     cleanup:
-      - /include
-      - /lib/*.a
-      - /lib/*.la
-      - /lib/pkgconfig
-      - /share/man
+      - '*.exe.*'
+      - '*.pdb'
+      - '*.xsd'
+      - /lib/mono/4.5/Facades
+      - /lib/mono/4.5/MSBuild
+      - /lib/mono-source-libs
+      - /share
+
+  - name: msbuild
+    sources:
+      - type: file
+        url: http://download.mono-project.com/repo/ubuntu/pool/main/m/msbuild/msbuild_16.4+xamarinxplat.2019.09.09.15.03-0xamarin5+ubuntu1804b1_all.deb
+        sha256: 47804a0ff3b7531d3c5e1d7b733189354761e08593e6d927b868b3c3f219aef3
+    cleanup:
+      - '*'
+    buildsystem: simple
+    build-commands:
+      - ar x msbuild_*.deb
+      - tar xf data.tar.xz
+      - sed -e 's|/usr/|/app/|g' -i usr/bin/msbuild
+      - cp -a usr/. /app
 
   - name: lua51
     sources:
@@ -68,11 +94,6 @@ modules:
           - mv doc/luac.1 doc/luac5.1.1
     cleanup:
       - /bin
-      - /include
-      - /lib/*.a
-      - /lib/*.la
-      - /lib/pkgconfig
-      - /share/man
     buildsystem: simple
     build-commands:
       - make CFLAGS='-O2 -Wall -fPIC' linux
@@ -148,9 +169,9 @@ modules:
         dest-filename: thirdparty/download/rix0rrr.BeaconLib.zip
         sha256: ed4d44f176af53a2fcb31b35def9a5af4cd42bb3639bc2c458f843d991f074ec
       - type: archive
-        url: https://geolite.maxmind.com/download/geoip/database/GeoLite2-Country_20191112.tar.gz
+        url: https://geolite.maxmind.com/download/geoip/database/GeoLite2-Country_20191224.tar.gz
         dest: thirdparty/download/
-        sha256: 415e0e349158a7a742b18d405dcf9cd2eb94ee91ba8f1ab5441c2acd708dd2dd
+        sha256: f2dccb2d086b02ffd71aa83d5e1e7f5d0dd79ba16292b6ec82a6ff41d426b33d
       - type: shell
         commands:
           - gzip thirdparty/download/GeoLite2-Country.mmdb
@@ -162,22 +183,6 @@ modules:
       - make prefix=/app install
       - make prefix=/app install-linux-shortcuts
       - make prefix=/app install-linux-mime
-
-  - name: mono-runtime
-    buildsystem: simple
-    build-commands:
-      - /usr/lib/sdk/mono5/install.sh
-      - cp /usr/lib/sdk/mono5/lib/libmono-btls-shared.so /app/lib/
-      - cp /usr/lib/sdk/mono5/lib/mono/4.5/cert-sync.exe /app/lib/mono/4.5/
-      - cp /usr/lib/sdk/mono5/bin/cert-sync /app/bin/
-      - sed -i 's,/usr/lib/sdk/mono5/,/app/,g' /app/bin/cert-sync
-      - cp -ar /usr/lib/sdk/mono5/lib/mono/gac/System.Drawing /app/lib/mono/gac/
-      - rm -f /app/lib/mono/gac/System.Drawing/*/*.pdb
-      - cp -ar /usr/lib/sdk/mono5/lib/mono/gac/System.Numerics /app/lib/mono/gac/
-      - rm -f /app/lib/mono/gac/System.Numerics/*/*.pdb
-    build-options:
-      no-debuginfo: true
-      strip: true
 
   - name: cert-sync-wrapper
     buildsystem: simple
