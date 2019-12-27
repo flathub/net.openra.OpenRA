@@ -47,8 +47,8 @@ modules:
   - name: mono
     sources:
       - type: archive
-        url: https://download.mono-project.com/sources/mono/mono-6.4.0.198.tar.xz
-        sha256: d00852822525e36f9f8b3e0f537d3a41c7a718cac22d06fc63ea64988877c2ea
+        url: https://download.mono-project.com/sources/mono/mono-5.20.1.34.tar.bz2
+        sha256: cd91d44cf62515796ba90dfdc274bb33471c25a2f1a262689a3bdc0a672b7c8b
     config-opts:
       - --disable-dependency-tracking
       - --without-mcs-docs
