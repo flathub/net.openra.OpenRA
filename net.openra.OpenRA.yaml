@@ -22,14 +22,14 @@ cleanup:
 cleanup-commands:
   - >
     find /app/bin -type f -not -name 'openra*' -not -name mono -not -name mono-sgen
-    -not -name cert-sync -print0 | xargs -0 rm -rf
+    -not -name cert-sync -not -name python -print0 | xargs -0 rm -rf
   - find /app/lib/mono -mindepth 1 -maxdepth 1 -not -name gac -not -name 4.5 -print0 | xargs -0 rm -rf
   - >
     find /app/lib/mono/gac -mindepth 1 -maxdepth 1 -not -name System -not -name System.Core
     -not -name System.Xml -not -name System.Configuration -not -name I18N -not -name I18N.CJK
     -not -name I18N.MidEast -not -name I18N.Other -not -name I18N.Rare -not -name I18N.West
     -not -name Accessibility -not -name Mono.Cairo -not -name Mono.Posix -not -name Mono.CSharp
-    -not -name System.Drawing -not -name System.Numerics  -not -name Mono.Security  -print0 | xargs -0 rm -rf
+    -not -name System.Drawing -not -name System.Numerics -not -name Mono.Security -print0 | xargs -0 rm -rf
   - find /app/lib/mono -type f -name '*.exe' -not -name cert-sync.exe -print0 | xargs -0 rm -rf
 modules:
   - name: libgdiplus0
@@ -38,17 +38,17 @@ modules:
         url: https://download.mono-project.com/sources/libgdiplus/libgdiplus0-6.0.4.tar.gz
         sha256: b75c38c9765d5b3e2fb3da4435f169c732983878c0f94b8bf9012137022abf29
 
+  - name: python
+    buildsystem: simple
+    build-commands:
+      - install -d /app/bin
+      - ln -s /usr/bin/python3 /app/bin/python
+
   - name: mono
     sources:
       - type: archive
-        url: https://download.mono-project.com/sources/mono/mono-6.6.0.161.tar.xz
-        sha256: 778badcf2f201df7efa5e031d01802ea8c29818de66e5e7e9f85212c2277d85f
-      - type: shell
-        commands:
-          - mkdir flatpak-bin
-          - ln -s /usr/bin/python3 flatpak-bin/python
-    build-options:
-      append-path: /run/build/mono/flatpak-bin
+        url: https://download.mono-project.com/sources/mono/mono-6.4.0.198.tar.xz
+        sha256: d00852822525e36f9f8b3e0f537d3a41c7a718cac22d06fc63ea64988877c2ea
     config-opts:
       - --disable-dependency-tracking
       - --without-mcs-docs
