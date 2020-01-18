@@ -47,8 +47,8 @@ modules:
   - name: mono
     sources:
       - type: archive
-        url: https://download.mono-project.com/sources/mono/mono-6.4.0.198.tar.xz
-        sha256: d00852822525e36f9f8b3e0f537d3a41c7a718cac22d06fc63ea64988877c2ea
+        url: https://download.mono-project.com/sources/mono/mono-6.8.0.96.tar.xz
+        sha256: ed5df4ec663a4e228e89e910e954fa18d33f72e790c11174e1b62fc8cca90ba0
     config-opts:
       - --disable-dependency-tracking
       - --without-mcs-docs
@@ -64,8 +64,8 @@ modules:
   - name: msbuild
     sources:
       - type: file
-        url: http://download.mono-project.com/repo/ubuntu/pool/main/m/msbuild/msbuild_16.4+xamarinxplat.2019.09.09.15.03-0xamarin5+ubuntu1804b1_all.deb
-        sha256: 47804a0ff3b7531d3c5e1d7b733189354761e08593e6d927b868b3c3f219aef3
+        url: http://download.mono-project.com/repo/ubuntu/pool/main/m/msbuild/msbuild_16.5+xamarinxplat.2020.01.10.05.36-0xamarin1+debian10b1_all.deb
+        sha256: 9b699f324020af67e340e5b5efdea47f690d3f6376eff0d564c50cb4ab48211c
     cleanup:
       - '*'
     buildsystem: simple
