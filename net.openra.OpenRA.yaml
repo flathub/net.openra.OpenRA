@@ -112,8 +112,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/OpenRA/OpenRA
-        commit: a47969b31b66455ac6f61796b26c753f14bf5bcc
-        branch: release-20191117
+        commit: e82c30fbabc008a988936025f3250729d9a22b4c
+        branch: release-20200202
       - type: shell
         commands:
           - mkdir -p LocalNugetPackages
@@ -172,12 +172,8 @@ modules:
         url: https://nuget.org/api/v2/package/rix0rrr.BeaconLib/1.0.1
         dest-filename: thirdparty/download/rix0rrr.BeaconLib.zip
         sha256: ed4d44f176af53a2fcb31b35def9a5af4cd42bb3639bc2c458f843d991f074ec
-      - type: file
-        path: GeoLite2-Country.mmdb.gz
-        dest: thirdparty/download/
     buildsystem: simple
     build-commands:
-      - touch thirdparty/download/GeoLite2-Country.mmdb.gz
       - make version
       - make
       - make prefix=/app install
