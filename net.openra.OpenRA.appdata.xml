@@ -55,7 +55,7 @@
   <url type="homepage">https://www.openra.net</url>
   <update_contact>paul_at_chote.net</update_contact>
   <releases>
-    <release version="playtest-20200118" date="2020-01-18"/>
+    <release version="playtest-20200301" date="2020-03-01"/>
   </releases>
   <content_rating type="oars-1.1">
     <content_attribute id="violence-realistic">moderate</content_attribute>
