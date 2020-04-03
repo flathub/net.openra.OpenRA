@@ -163,7 +163,7 @@ modules:
       - type: file
         url: https://github.com/OpenRA/OpenAL-CS/releases/download/20200316/OpenAL-CS.dll.config
         dest-filename: thirdparty/download/OpenAL-CS.dll.config
-        sha256: 1b443d4546c18d2e4a856fdfbd14b11f31a7045f1991f175a357e2c4c2feb4c06
+        sha256: b443d4546c18d2e4a856fdfbd14b11f31a7045f1991f175a357e2c4c2feb4c06
       - type: file
         url: https://github.com/OpenRA/Eluant/releases/download/20160124/Eluant.dll
         dest-filename: thirdparty/download/Eluant.dll
