@@ -112,8 +112,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/OpenRA/OpenRA
-        commit: df4c363e9c54838c20d9782998e16913acced6f1
-        branch: playtest-20200303
+        commit: 00ddf82e8509cd90752dcc90926b61b2472316f8
+        branch: playtest-20200329
       - type: shell
         commands:
           - mkdir -p LocalNugetPackages
@@ -157,13 +157,13 @@ modules:
         dest-filename: thirdparty/download/SDL2-CS.dll.config
         sha256: 7d75ef450e1ceb3f61e77a0513b034a5bc2e754065182bc1bc9134ac664da6bd
       - type: file
-        url: https://github.com/OpenRA/OpenAL-CS/releases/download/20190907/OpenAL-CS.dll
+        url: https://github.com/OpenRA/OpenAL-CS/releases/download/20200316/OpenAL-CS.dll
         dest-filename: thirdparty/download/OpenAL-CS.dll
         sha256: 4cc20a160107748a8e13dfc5e29f9daacf2675e4b302e066bfbe4a1be0596015
       - type: file
-        url: https://github.com/OpenRA/OpenAL-CS/releases/download/20190907/OpenAL-CS.dll.config
+        url: https://github.com/OpenRA/OpenAL-CS/releases/download/20200316/OpenAL-CS.dll.config
         dest-filename: thirdparty/download/OpenAL-CS.dll.config
-        sha256: 12704a902127e3f67e7d9a3e2331bf2d65e008b59ab96d132807add14e0f2a1c
+        sha256: 1b443d4546c18d2e4a856fdfbd14b11f31a7045f1991f175a357e2c4c2feb4c06
       - type: file
         url: https://github.com/OpenRA/Eluant/releases/download/20160124/Eluant.dll
         dest-filename: thirdparty/download/Eluant.dll
