@@ -173,7 +173,7 @@ modules:
         dest-filename: IP2LOCATION-LITE-DB1.IPV6.BIN.ZIP
     buildsystem: simple
     build-commands:
-      - touch IP2LOCATION-LITE-DB1.BIN.ZIP
+      - touch IP2LOCATION-LITE-DB1.IPV6.BIN.ZIP
       - make version
       - make
       - make prefix=/app install
