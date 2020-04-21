@@ -171,9 +171,12 @@ modules:
       - type: file
         path: IP2LOCATION-LITE-DB1-2020-03-31.IPV6.BIN.ZIP
         dest-filename: IP2LOCATION-LITE-DB1.IPV6.BIN.ZIP
+      - type: script
+        commands:
+          - "# NOP"
+        dest-filename: fetch-geoip.sh
     buildsystem: simple
     build-commands:
-      - touch IP2LOCATION-LITE-DB1.IPV6.BIN.ZIP
       - make version
       - make
       - make prefix=/app install
