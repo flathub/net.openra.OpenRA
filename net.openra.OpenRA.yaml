@@ -112,8 +112,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/OpenRA/OpenRA
-        commit: 00ddf82e8509cd90752dcc90926b61b2472316f8
-        branch: playtest-20200329
+        commit: 9e279b9987392df90affd347c5e5e98987371f01
+        branch: playtest-20200418
       - type: shell
         commands:
           - mkdir -p LocalNugetPackages
@@ -128,10 +128,6 @@ modules:
         url: https://www.nuget.org/api/v2/package/SharpZipLib/1.1.0
         dest-filename: thirdparty/download/SharpZipLib.zip
         sha256: 0f4bb6666a67fde963d90f4a96fd68eb1d098ef55a936d6e712cea74d4b798ca
-      - type: file
-        url: https://nuget.org/api/v2/package/MaxMind.Db/2.0.0
-        dest-filename: thirdparty/download/MaxMind.Db.zip
-        sha256: 98595abd21c735fe8bb84911a7b254f5d37c910818411f8edded7378e3e7c181
       - type: file
         url: https://nuget.org/api/v2/package/NUnit/3.0.1
         dest-filename: thirdparty/download/NUnit.zip
@@ -172,8 +168,12 @@ modules:
         url: https://nuget.org/api/v2/package/rix0rrr.BeaconLib/1.0.1
         dest-filename: thirdparty/download/rix0rrr.BeaconLib.zip
         sha256: ed4d44f176af53a2fcb31b35def9a5af4cd42bb3639bc2c458f843d991f074ec
+      - type: file
+        path: IP2LOCATION-LITE-DB1-2020-03-31.IPV6.BIN.ZIP
+        dest-filename: IP2LOCATION-LITE-DB1.IPV6.BIN.ZIP
     buildsystem: simple
     build-commands:
+      - touch IP2LOCATION-LITE-DB1.BIN.ZIP
       - make version
       - make
       - make prefix=/app install
