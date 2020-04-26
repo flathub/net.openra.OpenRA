@@ -112,8 +112,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/OpenRA/OpenRA
-        commit: 9e279b9987392df90affd347c5e5e98987371f01
-        branch: playtest-20200418
+        commit: 5943ecc9435c3ced58f2e23a5237ec2affeb5d55
+        branch: playtest-20200426
       - type: shell
         commands:
           - mkdir -p LocalNugetPackages
