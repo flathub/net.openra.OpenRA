@@ -52,10 +52,6 @@ modules:
     config-opts:
       - --disable-dependency-tracking
       - --without-mcs-docs
-    build-options:
-      arch:
-        arm:
-          no-debuginfo: true  # Bug in strip
     cleanup:
       - '*.exe.*'
       - '*.pdb'
