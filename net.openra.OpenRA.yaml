@@ -110,10 +110,10 @@ modules:
 
   - name: OpenRA
     sources:
-      - type: git
-        url: https://github.com/OpenRA/OpenRA
-        commit: 5943ecc9435c3ced58f2e23a5237ec2affeb5d55
-        branch: release-20200503
+      - type: archive
+        strip-components: 0
+        url: https://github.com/OpenRA/OpenRA/releases/download/release-20200503/OpenRA-release-20200503-source.tar.bz2
+        sha256: fda32abf26329af6bbfc374727ab7f170079631827e109824deeb7a75f1d0a7d
       - type: shell
         commands:
           - mkdir -p LocalNugetPackages
@@ -177,7 +177,6 @@ modules:
         dest-filename: fetch-geoip.sh
     buildsystem: simple
     build-commands:
-      - make version
       - make
       - make prefix=/app install
       - make prefix=/app install-linux-shortcuts
