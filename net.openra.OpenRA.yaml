@@ -110,10 +110,10 @@ modules:
 
   - name: OpenRA
     sources:
-      - type: git
-        url: https://github.com/OpenRA/OpenRA
-        commit: 5943ecc9435c3ced58f2e23a5237ec2affeb5d55
-        branch: playtest-20200426
+      - type: archive
+        strip-components: 0
+        url: https://github.com/OpenRA/OpenRA/releases/download/playtest-20200426/OpenRA-playtest-20200426-source.tar.bz2
+        sha256: ef8ad8fe5426af7a70c5f47d96e8d3bf5bca0c73e61803f5298f15619f7a44be
       - type: shell
         commands:
           - mkdir -p LocalNugetPackages
@@ -177,7 +177,6 @@ modules:
         dest-filename: fetch-geoip.sh
     buildsystem: simple
     build-commands:
-      - make version
       - make
       - make prefix=/app install
       - make prefix=/app install-linux-shortcuts
