@@ -112,8 +112,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/OpenRA/OpenRA
-        commit: e82c30fbabc008a988936025f3250729d9a22b4c
-        branch: release-20200202
+        commit: 5943ecc9435c3ced58f2e23a5237ec2affeb5d55
+        branch: release-20200503
       - type: shell
         commands:
           - mkdir -p LocalNugetPackages
@@ -128,10 +128,6 @@ modules:
         url: https://www.nuget.org/api/v2/package/SharpZipLib/1.1.0
         dest-filename: thirdparty/download/SharpZipLib.zip
         sha256: 0f4bb6666a67fde963d90f4a96fd68eb1d098ef55a936d6e712cea74d4b798ca
-      - type: file
-        url: https://nuget.org/api/v2/package/MaxMind.Db/2.0.0
-        dest-filename: thirdparty/download/MaxMind.Db.zip
-        sha256: 98595abd21c735fe8bb84911a7b254f5d37c910818411f8edded7378e3e7c181
       - type: file
         url: https://nuget.org/api/v2/package/NUnit/3.0.1
         dest-filename: thirdparty/download/NUnit.zip
@@ -157,13 +153,13 @@ modules:
         dest-filename: thirdparty/download/SDL2-CS.dll.config
         sha256: 7d75ef450e1ceb3f61e77a0513b034a5bc2e754065182bc1bc9134ac664da6bd
       - type: file
-        url: https://github.com/OpenRA/OpenAL-CS/releases/download/20190907/OpenAL-CS.dll
+        url: https://github.com/OpenRA/OpenAL-CS/releases/download/20200316/OpenAL-CS.dll
         dest-filename: thirdparty/download/OpenAL-CS.dll
         sha256: 4cc20a160107748a8e13dfc5e29f9daacf2675e4b302e066bfbe4a1be0596015
       - type: file
-        url: https://github.com/OpenRA/OpenAL-CS/releases/download/20190907/OpenAL-CS.dll.config
+        url: https://github.com/OpenRA/OpenAL-CS/releases/download/20200316/OpenAL-CS.dll.config
         dest-filename: thirdparty/download/OpenAL-CS.dll.config
-        sha256: 12704a902127e3f67e7d9a3e2331bf2d65e008b59ab96d132807add14e0f2a1c
+        sha256: b443d4546c18d2e4a856fdfbd14b11f31a7045f1991f175a357e2c4c2feb4c06
       - type: file
         url: https://github.com/OpenRA/Eluant/releases/download/20160124/Eluant.dll
         dest-filename: thirdparty/download/Eluant.dll
@@ -172,6 +168,13 @@ modules:
         url: https://nuget.org/api/v2/package/rix0rrr.BeaconLib/1.0.1
         dest-filename: thirdparty/download/rix0rrr.BeaconLib.zip
         sha256: ed4d44f176af53a2fcb31b35def9a5af4cd42bb3639bc2c458f843d991f074ec
+      - type: file
+        path: IP2LOCATION-LITE-DB1-2020-03-31.IPV6.BIN.ZIP
+        dest-filename: IP2LOCATION-LITE-DB1.IPV6.BIN.ZIP
+      - type: script
+        commands:
+          - "# NOP"
+        dest-filename: fetch-geoip.sh
     buildsystem: simple
     build-commands:
       - make version
