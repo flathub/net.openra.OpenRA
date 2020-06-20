@@ -35,8 +35,8 @@ modules:
   - name: libgdiplus0
     sources:
       - type: archive
-        url: https://download.mono-project.com/sources/libgdiplus/libgdiplus0-6.0.4.tar.gz
-        sha256: b75c38c9765d5b3e2fb3da4435f169c732983878c0f94b8bf9012137022abf29
+        url: https://download.mono-project.com/sources/libgdiplus/libgdiplus0-6.0.5.tar.gz
+        sha256: b81e4e5cc3e4831b2945de08bef26eb1bdcd795aeaf8f971b221c51213a025ef
 
   - name: python
     buildsystem: simple
@@ -47,8 +47,8 @@ modules:
   - name: mono
     sources:
       - type: archive
-        url: https://download.mono-project.com/sources/mono/mono-6.8.0.105.tar.xz
-        sha256: 578799c44c3c86a9eb5daf6dec6c60a24341940fd376371956d4a46cf8612178
+        url: https://download.mono-project.com/sources/mono/mono-6.8.0.123.tar.xz
+        sha256: e2e42d36e19f083fc0d82f6c02f7db80611d69767112af353df2f279744a2ac5
     config-opts:
       - --disable-dependency-tracking
       - --without-mcs-docs
@@ -68,8 +68,8 @@ modules:
   - name: msbuild
     sources:
       - type: file
-        url: http://download.mono-project.com/repo/ubuntu/pool/main/m/msbuild/msbuild_16.5+xamarinxplat.2020.01.10.05.36-0xamarin1+debian10b1_all.deb
-        sha256: 9b699f324020af67e340e5b5efdea47f690d3f6376eff0d564c50cb4ab48211c
+        url: http://download.mono-project.com/repo/ubuntu/pool/main/m/msbuild/msbuild_16.5+xamarinxplat.2020.02.20.11.54-0xamarin2+debian10b1_all.deb
+        sha256: 84bb493a82ba62f634c247b448d0159f4a6e528f063ad01f0e8a981ec392cc6c
     cleanup:
       - '*'
     buildsystem: simple
@@ -142,7 +142,8 @@ modules:
         dest-filename: thirdparty/download/rix0rrr.BeaconLib.zip
         sha256: ed4d44f176af53a2fcb31b35def9a5af4cd42bb3639bc2c458f843d991f074ec
       - type: file
-        path: IP2LOCATION-LITE-DB1-2020-03-31.IPV6.BIN.ZIP
+        # Source: http://download.ip2location.com/lite/IP2LOCATION-LITE-DB1.IPV6.BIN.ZIP
+        path: IP2LOCATION-LITE-DB1-2020-05-28.IPV6.BIN.ZIP
         dest-filename: IP2LOCATION-LITE-DB1.IPV6.BIN.ZIP
       - type: script
         commands:
