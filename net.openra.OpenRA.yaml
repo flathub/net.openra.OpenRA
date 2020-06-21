@@ -176,7 +176,7 @@ modules:
     build-commands:
       - install -Dm0755 -t /app/bin openra-*-wrapper
       - sed -i 's/^Exec=openra-[^ ]*/\0-wrapper/' /app/share/applications/openra-{ra,cnc,d2k}.desktop
-    run-tests: true
+    run-tests: false  # Bug: https://github.com/flatpak/flatpak-builder/issues/229
     test-commands:
       - |
         for f in /app/share/applications/*.desktop
