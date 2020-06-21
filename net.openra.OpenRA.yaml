@@ -89,16 +89,15 @@ modules:
         sha256: ef8ad8fe5426af7a70c5f47d96e8d3bf5bca0c73e61803f5298f15619f7a44be
       - type: shell
         commands:
-          - mkdir -p LocalNugetPackages
-          - mkdir thirdparty/download
+          - mkdir LocalNugetPackages thirdparty/download
       - type: file
         path: nuget.config
       - type: file
-        url: https://www.nuget.org/api/v2/package/StyleCop.Analyzers/1.1.118
+        url: https://nuget.org/api/v2/package/StyleCop.Analyzers/1.1.118
         dest-filename: LocalNugetPackages/stylecop.analyzers.1.1.118.nupkg
         sha256: 0a30b57f9cf4b0fd7917a15e5ea2033ad64b1ea8239904f3a6c22b464c574442
       - type: file
-        url: https://www.nuget.org/api/v2/package/SharpZipLib/1.1.0
+        url: https://nuget.org/api/v2/package/SharpZipLib/1.1.0
         dest-filename: thirdparty/download/SharpZipLib.zip
         sha256: 0f4bb6666a67fde963d90f4a96fd68eb1d098ef55a936d6e712cea74d4b798ca
       - type: file
@@ -176,7 +175,7 @@ modules:
         dest-filename: openra-d2k-wrapper
     build-commands:
       - install -Dm0755 -t /app/bin openra-*-wrapper
-      - sed -i 's/Exec=openra-[^ ]*/\0-wrapper/' /app/share/applications/openra-{ra,cnc,d2k}.desktop
+      - sed -i 's/^Exec=openra-[^ ]*/\0-wrapper/' /app/share/applications/openra-{ra,cnc,d2k}.desktop
 
   - name: export
     buildsystem: simple
@@ -186,8 +185,10 @@ modules:
     build-commands:
       - sed -i 's/Icon=openra/Icon=net.openra.OpenRA.openra/' /app/share/applications/openra-{ra,cnc,d2k}.desktop
       - |
-        for f in /app/share/icons/hicolor/*/apps/openra-{ra,cnc,d2k}.* /app/share/applications/openra-{ra,cnc,d2k}.desktop /app/share/mime/packages/openra-{ra,cnc,d2k}.xml
+        for f in /app/share/icons/hicolor/*/apps/openra-{ra,cnc,d2k}.* \
+                 /app/share/applications/openra-{ra,cnc,d2k}.desktop \
+                 /app/share/mime/packages/openra-{ra,cnc,d2k}.xml
         do
-          mv "$f" "$(echo "$f" | sed 's/openra/net.openra.OpenRA.openra/')"
+          mv "$f" "${f/openra/net.openra.OpenRA.openra}" || exit 1
         done
       - install -Dm0644 -t /app/share/metainfo net.openra.OpenRA.appdata.xml
