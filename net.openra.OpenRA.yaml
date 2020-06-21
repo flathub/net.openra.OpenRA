@@ -176,6 +176,15 @@ modules:
     build-commands:
       - install -Dm0755 -t /app/bin openra-*-wrapper
       - sed -i 's/^Exec=openra-[^ ]*/\0-wrapper/' /app/share/applications/openra-{ra,cnc,d2k}.desktop
+    run-tests: true
+    test-commands:
+      - |
+        for f in /app/share/applications/*.desktop
+        do
+          wrapper_cmd="$(grep -o '^Exec=[^ ]*-wrapper\( \|$\)' "$f" | cut -d= -f2- | tr -d ' ')"
+          test -f "/app/bin/${wrapper_cmd}" -a -x "/app/bin/${wrapper_cmd}" || exit 1
+          test "$f" = "/app/share/applications/${wrapper_cmd%-wrapper}.desktop" || exit 1
+        done
 
   - name: export
     buildsystem: simple
