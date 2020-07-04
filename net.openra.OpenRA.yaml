@@ -22,7 +22,7 @@ cleanup:
 cleanup-commands:
   - >
     find /app/bin -type f -not -name 'openra*' -not -name mono -not -name mono-sgen
-    -not -name cert-sync -not -name python -print0 | xargs -0 rm -rf
+    -not -name 'cert-sync*' -not -name python -print0 | xargs -0 rm -rf
   - find /app/lib/mono -mindepth 1 -maxdepth 1 -not -name gac -not -name 4.5 -print0 | xargs -0 rm -rf
   - >
     find /app/lib/mono/gac -mindepth 1 -maxdepth 1 -not -name System -not -name System.Core
@@ -161,20 +161,11 @@ modules:
       - type: script
         commands:
           - cert-sync --user --quiet /etc/ssl/certs/ca-certificates.crt
-          - exec openra-ra "$@"
-        dest-filename: openra-ra-wrapper
-      - type: script
-        commands:
-          - cert-sync --user --quiet /etc/ssl/certs/ca-certificates.crt
-          - exec openra-cnc "$@"
-        dest-filename: openra-cnc-wrapper
-      - type: script
-        commands:
-          - cert-sync --user --quiet /etc/ssl/certs/ca-certificates.crt
-          - exec openra-d2k "$@"
-        dest-filename: openra-d2k-wrapper
+          - exec "${0/%-wrapper/}" "$@"
+        dest-filename: cert-sync-wrapper
     build-commands:
-      - install -Dm0755 -t /app/bin openra-*-wrapper
+      - install -Dm0755 -t /app/bin cert-sync-wrapper
+      - for target in openra-{ra,cnc,d2k}{,-server}; do ln -s cert-sync-wrapper "/app/bin/${target}-wrapper"; done
       - sed -i 's/^Exec=openra-[^ ]*/\0-wrapper/' /app/share/applications/openra-{ra,cnc,d2k}.desktop
     run-tests: false  # Bug: https://github.com/flatpak/flatpak-builder/issues/229
     test-commands:
