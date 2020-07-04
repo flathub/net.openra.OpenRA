@@ -147,7 +147,7 @@ modules:
       - install -Dm0755 -t /app/bin cert-sync-wrapper
       - for target in openra-{ra,cnc,d2k}{,-server}; do ln -s cert-sync-wrapper "/app/bin/${target}-wrapper"; done
       - sed -i 's/^Exec=openra-[^ ]*/\0-wrapper/' /app/share/applications/openra-{ra,cnc,d2k}.desktop
-    run-tests: false  # Bug: https://github.com/flatpak/flatpak-builder/issues/229
+    run-tests: true
     test-commands:
       - |
         for f in /app/share/applications/*.desktop
