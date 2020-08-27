@@ -2,7 +2,7 @@ app-id: net.openra.OpenRA
 runtime: org.freedesktop.Platform
 runtime-version: '19.08'
 sdk: org.freedesktop.Sdk
-command: openra-ra-wrapper
+command: openra-ra
 rename-desktop-file: net.openra.OpenRA-ra.desktop
 rename-icon: net.openra.OpenRA-ra
 writable-sdk: true  # Required to install MSBuild for Mono
@@ -141,20 +141,14 @@ modules:
       - type: script
         commands:
           - cert-sync --user --quiet /etc/ssl/certs/ca-certificates.crt
-          - exec "${0/%-wrapper/}" "$@"
+          - exec "$0.real" "$@"
         dest-filename: cert-sync-wrapper
     build-commands:
       - install -Dm0755 -t /app/bin cert-sync-wrapper
-      - for target in openra-{ra,cnc,d2k}{,-server}; do ln -s cert-sync-wrapper "/app/bin/${target}-wrapper"; done
-      - sed -i 's/^Exec=openra-[^ ]*/\0-wrapper/' /app/share/applications/openra-{ra,cnc,d2k}.desktop
-    run-tests: false  # Bug: https://github.com/flatpak/flatpak-builder/issues/229
-    test-commands:
       - |
-        for f in /app/share/applications/*.desktop
-        do
-          wrapper_cmd="$(grep -o '^Exec=[^ ]*-wrapper\( \|$\)' "$f" | cut -d= -f2- | tr -d ' ')"
-          test -f "/app/bin/${wrapper_cmd}" -a -x "/app/bin/${wrapper_cmd}" || exit 1
-          test "$f" = "/app/share/applications/${wrapper_cmd%-wrapper}.desktop" || exit 1
+        for f in openra-{ra,cnc,d2k}{,-server}; do
+          mv "/app/bin/$f" "/app/bin/$f.real"
+          ln -s cert-sync-wrapper "/app/bin/$f"
         done
 
   - name: export
