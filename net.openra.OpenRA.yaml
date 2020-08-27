@@ -3,8 +3,8 @@ runtime: org.freedesktop.Platform
 runtime-version: '19.08'
 sdk: org.freedesktop.Sdk
 command: openra-ra-wrapper
-rename-desktop-file: net.openra.OpenRA.openra-ra.desktop
-rename-icon: net.openra.OpenRA.openra-ra
+rename-desktop-file: net.openra.OpenRA-ra.desktop
+rename-icon: net.openra.OpenRA-ra
 writable-sdk: true  # Required to install MSBuild for Mono
 sdk-extensions:
   - org.freedesktop.Sdk.Extension.mono5
@@ -163,12 +163,12 @@ modules:
       - type: file
         path: net.openra.OpenRA.appdata.xml
     build-commands:
-      - sed -i 's/Icon=openra/Icon=net.openra.OpenRA.openra/' /app/share/applications/openra-{ra,cnc,d2k}.desktop
+      - sed -i 's/Icon=openra/Icon=net.openra.OpenRA/' /app/share/applications/openra-{ra,cnc,d2k}.desktop
       - |
         for f in /app/share/icons/hicolor/*/apps/openra-{ra,cnc,d2k}.* \
                  /app/share/applications/openra-{ra,cnc,d2k}.desktop \
                  /app/share/mime/packages/openra-{ra,cnc,d2k}.xml
         do
-          mv "$f" "${f/openra/net.openra.OpenRA.openra}" || exit 1
+          mv "$f" "${f/openra/net.openra.OpenRA}" || exit 1
         done
       - install -Dm0644 -t /app/share/metainfo net.openra.OpenRA.appdata.xml
