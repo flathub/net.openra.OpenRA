@@ -125,9 +125,6 @@ modules:
 
   - name: mono-runtime
     buildsystem: simple
-    build-options:
-      no-debuginfo: true
-      strip: true
     build-commands:
       - /usr/lib/sdk/mono6/install.sh System.Drawing System.Numerics
       - cp /usr/lib/sdk/mono6/lib/mono/4.5/cert-sync.exe /app/lib/mono/4.5/
