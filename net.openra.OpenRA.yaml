@@ -7,7 +7,7 @@ rename-desktop-file: net.openra.OpenRA-ra.desktop
 rename-icon: net.openra.OpenRA-ra
 writable-sdk: true  # Required to install MSBuild for Mono
 sdk-extensions:
-  - org.freedesktop.Sdk.Extension.mono5
+  - org.freedesktop.Sdk.Extension.mono6
 finish-args:
   - --socket=x11
   - --share=ipc
@@ -17,9 +17,9 @@ finish-args:
   - --share=network
   - --persist=.openra
 build-options:
-  append-path: /usr/lib/sdk/mono5/bin
-  append-ld-library-path: /usr/lib/sdk/mono5/lib
-  append-pkg-config-path: /usr/lib/sdk/mono5/lib/pkgconfig
+  append-path: /usr/lib/sdk/mono6/bin
+  append-ld-library-path: /usr/lib/sdk/mono6/lib
+  append-pkg-config-path: /usr/lib/sdk/mono6/lib/pkgconfig
   env:
     MONO_GAC_PREFIX: /app
 cleanup:
@@ -40,14 +40,14 @@ modules:
   - name: msbuild
     sources:
       - type: file
-        url: http://download.mono-project.com/repo/ubuntu/pool/main/m/msbuild/msbuild_16.3+xamarinxplat.2019.08.08.00.55-0xamarin2+debian10b1_all.deb
-        sha256: f85197948f5026d0a4ef916124a28affbe53a200b52be629862d44e642a7ff63
+        url: http://download.mono-project.com/repo/ubuntu/pool/main/m/msbuild/msbuild_16.6+xamarinxplat.2020.04.29.14.43-0xamarin5+debian10b1_all.deb
+        sha256: 04b26e7c7685c74500dd90ee1f62834bf942e61812126d9b60c4954317e14654
     buildsystem: simple
     build-commands:
       - ar x msbuild_*.deb
       - tar xf data.tar.xz
-      - sed -e 's|/usr/|/usr/lib/sdk/mono5/|g' -i usr/bin/msbuild
-      - cp -a usr/. /usr/lib/sdk/mono5/
+      - sed -e 's|/usr/|/usr/lib/sdk/mono6/|g' -i usr/bin/msbuild
+      - cp -a usr/. /usr/lib/sdk/mono6/
 
   - name: OpenRA
     sources:
@@ -129,11 +129,10 @@ modules:
       no-debuginfo: true
       strip: true
     build-commands:
-      - /usr/lib/sdk/mono5/install.sh System.Drawing System.Numerics
-      - cp /usr/lib/sdk/mono5/lib/libmono-btls-shared.so /app/lib/
-      - cp /usr/lib/sdk/mono5/lib/mono/4.5/cert-sync.exe /app/lib/mono/4.5/
-      - cp /usr/lib/sdk/mono5/bin/cert-sync /app/bin/
-      - sed -i 's|/usr/lib/sdk/mono5/|/app/|g' /app/bin/cert-sync
+      - /usr/lib/sdk/mono6/install.sh System.Drawing System.Numerics
+      - cp /usr/lib/sdk/mono6/lib/mono/4.5/cert-sync.exe /app/lib/mono/4.5/
+      - cp /usr/lib/sdk/mono6/bin/cert-sync /app/bin/
+      - sed -i 's|/usr/lib/sdk/mono6/|/app/|g' /app/bin/cert-sync
 
   - name: cert-sync-wrapper
     buildsystem: simple
