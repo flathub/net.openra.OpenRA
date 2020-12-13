@@ -116,12 +116,24 @@ modules:
         commands:
           - "# NOP"
         dest-filename: fetch-geoip.sh
+      - type: file
+        path: openra.appdata.xml
     buildsystem: simple
     build-commands:
       - make
       - make prefix=/app install
       - make prefix=/app install-linux-shortcuts
       - make prefix=/app install-linux-mime
+      - |
+        version="$(cat VERSION)"
+        # Extract release date from release version (e.g. release-20200503)
+        date="$(sed -ne 's/^.*-\([0-9]\{4\}\)\([0-9]\{2\}\)\([0-9]\{2\}\)$/\1-\2-\3/p' <<<"$version")"
+        if [ -z "$date" ]; then
+          # Use date of git commit as fallback (e.g. building a dev version)
+          date="$(git log -1 --date=short --format=%cd)"
+        fi
+        sed -e "s/{RELEASE_VERSION}/${version}/g" -e "s/{RELEASE_DATE}/${date}/g" -i openra.appdata.xml
+        install -Dm0644 -t /app/share/metainfo openra.appdata.xml
 
   - name: mono-runtime
     buildsystem: simple
@@ -152,16 +164,13 @@ modules:
 
   - name: export
     buildsystem: simple
-    sources:
-      - type: file
-        path: net.openra.OpenRA.appdata.xml
     build-commands:
       - sed -i 's/Icon=openra/Icon=net.openra.OpenRA/' /app/share/applications/openra-{ra,cnc,d2k}.desktop
       - |
         for f in /app/share/icons/hicolor/*/apps/openra-{ra,cnc,d2k}.* \
                  /app/share/applications/openra-{ra,cnc,d2k}.desktop \
-                 /app/share/mime/packages/openra-{ra,cnc,d2k}.xml
+                 /app/share/mime/packages/openra-{ra,cnc,d2k}.xml \
+                 /app/share/metainfo/openra.appdata.xml
         do
           mv "$f" "${f/openra/net.openra.OpenRA}" || exit 1
         done
-      - install -Dm0644 -t /app/share/metainfo net.openra.OpenRA.appdata.xml
