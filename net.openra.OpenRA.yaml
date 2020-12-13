@@ -125,6 +125,7 @@ modules:
       - make prefix=/app install-linux-shortcuts
       - make prefix=/app install-linux-mime
       - |
+        set -e
         version="$(cat VERSION)"
         # Extract release date from release version (e.g. release-20200503)
         date="$(sed -ne 's/^.*-\([0-9]\{4\}\)\([0-9]\{2\}\)\([0-9]\{2\}\)$/\1-\2-\3/p' <<<"$version")"
@@ -157,6 +158,7 @@ modules:
     build-commands:
       - install -Dm0755 -t /app/bin cert-sync-wrapper
       - |
+        set -e
         for f in openra-{ra,cnc,d2k}{,-server}; do
           mv "/app/bin/$f" "/app/bin/$f.real"
           ln -s cert-sync-wrapper "/app/bin/$f"
@@ -168,10 +170,11 @@ modules:
       - sed -i 's/\(<launchable\(\s[^>]*\)\?>\)openra\(-[^<]*\.desktop<\)/\1net.openra.OpenRA\3/g' /app/share/metainfo/openra.appdata.xml
       - sed -i 's/Icon=openra/Icon=net.openra.OpenRA/' /app/share/applications/openra-{ra,cnc,d2k}.desktop
       - |
+        set -e
         for f in /app/share/icons/hicolor/*/apps/openra-{ra,cnc,d2k}.* \
                  /app/share/applications/openra-{ra,cnc,d2k}.desktop \
                  /app/share/mime/packages/openra-{ra,cnc,d2k}.xml \
                  /app/share/metainfo/openra.appdata.xml
         do
-          mv "$f" "${f/openra/net.openra.OpenRA}" || exit 1
+          mv "$f" "${f/openra/net.openra.OpenRA}"
         done
