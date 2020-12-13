@@ -61,27 +61,27 @@ modules:
       - type: file
         path: nuget.config
       - type: file
-        url: https://nuget.org/api/v2/package/StyleCop.Analyzers/1.1.118
+        url: https://www.nuget.org/api/v2/package/StyleCop.Analyzers/1.1.118
         dest-filename: LocalNugetPackages/stylecop.analyzers.1.1.118.nupkg
         sha256: 0a30b57f9cf4b0fd7917a15e5ea2033ad64b1ea8239904f3a6c22b464c574442
       - type: file
-        url: https://nuget.org/api/v2/package/SharpZipLib/1.1.0
+        url: https://www.nuget.org/api/v2/package/SharpZipLib/1.1.0
         dest-filename: thirdparty/download/SharpZipLib.zip
         sha256: 0f4bb6666a67fde963d90f4a96fd68eb1d098ef55a936d6e712cea74d4b798ca
       - type: file
-        url: https://nuget.org/api/v2/package/NUnit/3.0.1
+        url: https://www.nuget.org/api/v2/package/NUnit/3.0.1
         dest-filename: thirdparty/download/NUnit.zip
         sha256: eb0b156b44142622d7cd573073d6dc925f8529f2860637325f5af85f94db423c
       - type: file
-        url: https://nuget.org/api/v2/package/NUnit.Console/3.0.1
+        url: https://www.nuget.org/api/v2/package/NUnit.Console/3.0.1
         dest-filename: thirdparty/download/NUnit.Console.zip
         sha256: 164ce9124d769ac994a79234e59ce51a21be5089e86210666abfef0791ade07f
       - type: file
-        url: https://nuget.org/api/v2/package/Open.Nat/2.1.0
+        url: https://www.nuget.org/api/v2/package/Open.Nat/2.1.0
         dest-filename: thirdparty/download/Open.Nat.zip
         sha256: c532dee1478b4a7e28aa4797a5efc3f829a6bd0cc0af646aac001ce183f0e3e2
       - type: file
-        url: https://nuget.org/api/v2/package/FuzzyLogicLibrary/1.2.0
+        url: https://www.nuget.org/api/v2/package/FuzzyLogicLibrary/1.2.0
         dest-filename: thirdparty/download/FuzzyLogicLibrary.zip
         sha256: ca8caf33637ae661dfdd5797589f034950d2fcb4f7192ee858830f6e2525df3f
       - type: file
@@ -105,7 +105,7 @@ modules:
         dest-filename: thirdparty/download/Eluant.dll
         sha256: 218c4ea5424b44d746b5343563123beebc652fd9731967dfd49fed071b58df31
       - type: file
-        url: https://nuget.org/api/v2/package/rix0rrr.BeaconLib/1.0.1
+        url: https://www.nuget.org/api/v2/package/rix0rrr.BeaconLib/1.0.1
         dest-filename: thirdparty/download/rix0rrr.BeaconLib.zip
         sha256: ed4d44f176af53a2fcb31b35def9a5af4cd42bb3639bc2c458f843d991f074ec
       - type: file
