@@ -211,6 +211,7 @@ modules:
   - name: export
     buildsystem: simple
     build-commands:
+      - sed -i 's/\(<launchable\(\s[^>]*\)\?>\)openra\(-[^<]*\.desktop<\)/\1net.openra.OpenRA\3/g' /app/share/metainfo/openra.appdata.xml
       - sed -i 's/Icon=openra/Icon=net.openra.OpenRA/' /app/share/applications/openra-{ra,cnc,d2k}.desktop
       - |
         for f in /app/share/icons/hicolor/*/apps/openra-{ra,cnc,d2k}.* \
