@@ -110,7 +110,7 @@ modules:
         sha256: ed4d44f176af53a2fcb31b35def9a5af4cd42bb3639bc2c458f843d991f074ec
       - type: file
         # Source: http://download.ip2location.com/lite/IP2LOCATION-LITE-DB1.IPV6.BIN.ZIP
-        path: IP2LOCATION-LITE-DB1-2020-08-28.IPV6.BIN.ZIP
+        path: IP2LOCATION-LITE-DB1-2020-11-30.IPV6.BIN.ZIP
         dest-filename: IP2LOCATION-LITE-DB1.IPV6.BIN.ZIP
       - type: script
         commands:
