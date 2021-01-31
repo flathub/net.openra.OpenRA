@@ -163,7 +163,7 @@ modules:
         path: openra.appdata.xml
     buildsystem: simple
     build-commands:
-      - make version
+      - if git rev-parse 2>/dev/null; then make version; fi
       - make TARGETPLATFORM=unix-generic
       - make prefix=/app install
       - make prefix=/app install-linux-shortcuts
