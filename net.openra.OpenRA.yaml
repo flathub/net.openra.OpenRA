@@ -51,10 +51,10 @@ modules:
 
   - name: OpenRA
     sources:
-      - type: git
-        url: https://github.com/OpenRA/OpenRA
-        tag: playtest-20201213
-        commit: 611d12ac78c8ea49e9b0145a3422ab451362a103
+      - type: archive
+        strip-components: 0
+        url: https://github.com/OpenRA/OpenRA/releases/download/playtest-20210131/OpenRA-playtest-20210131-source.tar.bz2
+        sha256: 2c4a1ded5e3f5265fabda7e95ac72d4ad55e0f3ee4910cf290b927eb1e5335b7
       - type: shell
         commands:
           - mkdir LocalNugetPackages
