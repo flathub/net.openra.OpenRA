@@ -116,7 +116,7 @@ modules:
           - "# NOP"
         dest-filename: fetch-geoip.sh
       - type: file
-        path: openra.appdata.xml
+        path: openra.metainfo.xml.in
     buildsystem: simple
     build-commands:
       - if git rev-parse 2>/dev/null; then make version; fi
@@ -133,8 +133,8 @@ modules:
           # Use date of git commit as fallback (e.g. building a dev version)
           date="$(git log -1 --date=short --format=%cd)"
         fi
-        sed -e "s/{RELEASE_VERSION}/${version}/g" -e "s/{RELEASE_DATE}/${date}/g" -i openra.appdata.xml
-        install -Dm0644 -t /app/share/metainfo openra.appdata.xml
+        sed -e "s/{RELEASE_VERSION}/${version}/g" -e "s/{RELEASE_DATE}/${date}/g" openra.metainfo.xml.in >openra.metainfo.xml
+        install -Dm0644 -t /app/share/metainfo openra.metainfo.xml
 
   - name: mono-runtime
     buildsystem: simple
@@ -167,14 +167,14 @@ modules:
   - name: export
     buildsystem: simple
     build-commands:
-      - sed -i 's/\(<launchable\(\s[^>]*\)\?>\)openra\(-[^<]*\.desktop<\)/\1net.openra.OpenRA\3/g' /app/share/metainfo/openra.appdata.xml
+      - sed -i 's/\(<launchable\(\s[^>]*\)\?>\)openra\(-[^<]*\.desktop<\)/\1net.openra.OpenRA\3/g' /app/share/metainfo/openra.metainfo.xml
       - sed -i 's/Icon=openra/Icon=net.openra.OpenRA/' /app/share/applications/openra-{ra,cnc,d2k}.desktop
       - |
         set -e
         for f in /app/share/icons/hicolor/*/apps/openra-{ra,cnc,d2k}.* \
                  /app/share/applications/openra-{ra,cnc,d2k}.desktop \
                  /app/share/mime/packages/openra-{ra,cnc,d2k}.xml \
-                 /app/share/metainfo/openra.appdata.xml
+                 /app/share/metainfo/openra.metainfo.xml
         do
           mv "$f" "${f/openra/net.openra.OpenRA}"
         done
