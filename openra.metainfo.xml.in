@@ -35,20 +35,16 @@
   <launchable type="desktop-id">openra-d2k.desktop</launchable>
   <screenshots>
     <screenshot type="default">
-      <image>http://www.openra.net/images/appdata/ingame-ra.png</image>
+      <image>https://www.openra.net/images/heroes/red-alert.png</image>
       <caption>Red Alert mod</caption>
     </screenshot>
     <screenshot>
-      <image>http://www.openra.net/images/appdata/ingame-cnc.png</image>
+      <image>https://www.openra.net/images/heroes/command-and-conquer.png</image>
       <caption>Tiberian Dawn mod</caption>
     </screenshot>
     <screenshot>
-      <image>http://www.openra.net/images/appdata/ingame-d2k.png</image>
+      <image>https://www.openra.net/images/heroes/dune-2000.png</image>
       <caption>Dune 2000 Mod</caption>
-    </screenshot>
-    <screenshot>
-      <image>http://www.openra.net/images/appdata/multiplayer.png</image>
-      <caption>Multiplayer lobby in the Tiberian Dawn mod</caption>
     </screenshot>
   </screenshots>
   <url type="homepage">https://www.openra.net</url>
