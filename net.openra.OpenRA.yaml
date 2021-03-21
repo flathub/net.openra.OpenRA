@@ -5,7 +5,7 @@ sdk: org.freedesktop.Sdk
 command: openra-ra
 rename-desktop-file: net.openra.OpenRA-ra.desktop
 rename-icon: net.openra.OpenRA-ra
-writable-sdk: true  # Required to install MSBuild for Mono
+writable-sdk: true # Required to install MSBuild for Mono
 sdk-extensions:
   - org.freedesktop.Sdk.Extension.mono6
 finish-args:
@@ -125,6 +125,7 @@ modules:
       - make prefix=/app install-linux-shortcuts
       - make prefix=/app install-linux-mime
       - |
+        # Set version and release date in our custom Metainfo and install it
         set -e
         version="$(cat VERSION)"
         # Extract release date from release version (e.g. release-20200503)
