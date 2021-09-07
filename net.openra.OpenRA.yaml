@@ -154,7 +154,7 @@ modules:
         sha256: 8ed8fe846d8b1523ee56829b783e0408f0e5a2814fe30a2647cf5149ed578d1c
       - type: file
         # Source: https://download.ip2location.com/lite/IP2LOCATION-LITE-DB1.IPV6.BIN.ZIP
-        path: IP2LOCATION-LITE-DB1.IPV6.BIN.ZIP
+        path: test.config
       - type: script
         commands:
           - "# NOP"
