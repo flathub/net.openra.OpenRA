@@ -40,8 +40,8 @@ modules:
   - name: msbuild
     sources:
       - type: file
-        url: http://download.mono-project.com/repo/ubuntu/pool/main/m/msbuild/msbuild_16.6+xamarinxplat.2020.04.29.14.43-0xamarin5+debian10b1_all.deb
-        sha256: 04b26e7c7685c74500dd90ee1f62834bf942e61812126d9b60c4954317e14654
+        url: https://download.mono-project.com/repo/ubuntu/pool/main/m/msbuild/msbuild_16.6+xamarinxplat.2021.01.15.16.11-0xamarin1+debian10b1_all.deb
+        sha256: 300a0b2a10cd8a2f5555dc0c5db9b1127d2f24b274c8893984de8127cc68d7a4
     buildsystem: simple
     build-commands:
       - ar x msbuild_*.deb
