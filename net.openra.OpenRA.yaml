@@ -16,6 +16,9 @@ finish-args:
   - --device=all
   - --share=network
   - --persist=.openra
+  # https://gitlab.freedesktop.org/mesa/mesa/-/issues/4847
+  # https://github.com/OpenRA/OpenRA/issues/19434
+  - --env=GALLIUM_THREAD=0
 build-options:
   append-path: /usr/lib/sdk/mono6/bin
   append-ld-library-path: /usr/lib/sdk/mono6/lib
