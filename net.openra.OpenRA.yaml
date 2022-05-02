@@ -39,6 +39,10 @@ modules:
       - type: archive
         url: https://download.mono-project.com/sources/libgdiplus/libgdiplus-6.1.tar.gz
         sha256: 97d5a83d6d6d8f96c27fb7626f4ae11d3b38bc88a1726b4466aeb91451f3255b
+        x-checker-data:
+          type: html
+          url: https://download.mono-project.com/sources/libgdiplus/
+          pattern: '>(libgdiplus-([\d.]+).tar.gz)<'
 
   - name: msbuild
     sources:
@@ -58,6 +62,11 @@ modules:
         strip-components: 0
         url: https://github.com/OpenRA/OpenRA/releases/download/release-20210321/OpenRA-release-20210321-source.tar.bz2
         sha256: cc4c1011210c0395243c198c40294568bc2381ebfbd2f70df11988549307b636
+        x-checker-data:
+          type: json
+          url: https://api.github.com/repos/OpenRA/OpenRA/releases
+          version-query: '[.[] | select(.prerelease == false and .draft == false)][0].tag_name'
+          url-query: '.[].assets[] | select(.name == "OpenRA-" + $version + "-source.tar.bz2").browser_download_url'
       - type: shell
         commands:
           - mkdir LocalNugetPackages
