@@ -42,7 +42,7 @@ modules:
         x-checker-data:
           type: html
           url: https://download.mono-project.com/sources/libgdiplus/
-          pattern: '>(libgdiplus-([\d.]+)\.tar(?:\.[^<]*)?)<'
+          pattern: '>(libgdiplus-([\d.]+)\.tar[^<]*)<'
 
   - name: msbuild
     sources:
