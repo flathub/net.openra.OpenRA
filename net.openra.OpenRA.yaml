@@ -188,12 +188,8 @@ modules:
         dest: LocalNugetPackages
         sha256: 8ed8fe846d8b1523ee56829b783e0408f0e5a2814fe30a2647cf5149ed578d1c
       - type: file
-        # Source: https://download.ip2location.com/lite/IP2LOCATION-LITE-DB1.IPV6.BIN.ZIP
-        path: IP2LOCATION-LITE-DB1.IPV6.BIN.ZIP
-      - type: script
-        commands:
-          - "# NOP"
-        dest-filename: fetch-geoip.sh
+        url: https://github.com/OpenRA/GeoIP-Database/releases/download/monthly/IP2LOCATION-LITE-DB1.IPV6.BIN.ZIP
+        sha256: fe0c93e3c7ade60f4ffcf05b306ae9970544bc97065434af08dcf31b9d8383f4
       - type: file
         path: openra.metainfo.xml.in
     buildsystem: simple
