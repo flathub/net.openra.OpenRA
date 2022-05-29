@@ -5,9 +5,9 @@ sdk: org.freedesktop.Sdk
 command: openra-ra
 rename-desktop-file: net.openra.OpenRA-ra.desktop
 rename-icon: net.openra.OpenRA-ra
-writable-sdk: true # Required to install MSBuild for Mono
 sdk-extensions:
   - org.freedesktop.Sdk.Extension.mono6
+  - org.freedesktop.Sdk.Extension.dotnet5
 finish-args:
   - --socket=x11
   - --share=ipc
@@ -19,42 +19,8 @@ finish-args:
   # https://gitlab.freedesktop.org/mesa/mesa/-/issues/4847
   # https://github.com/OpenRA/OpenRA/issues/19434
   - --env=GALLIUM_THREAD=0
-build-options:
-  append-path: /usr/lib/sdk/mono6/bin
-  append-ld-library-path: /usr/lib/sdk/mono6/lib
-  append-pkg-config-path: /usr/lib/sdk/mono6/lib/pkgconfig
-  env:
-    MONO_GAC_PREFIX: /app
-cleanup:
-  - '*.a'
-  - '*.la'
-  - /include
-  - /lib/pkgconfig
-  - /share/man
 modules:
   - shared-modules/lua5.1/lua-5.1.5.json
-
-  - name: libgdiplus
-    sources:
-      - type: archive
-        url: https://download.mono-project.com/sources/libgdiplus/libgdiplus-6.1.tar.gz
-        sha256: 97d5a83d6d6d8f96c27fb7626f4ae11d3b38bc88a1726b4466aeb91451f3255b
-        x-checker-data:
-          type: html
-          url: https://download.mono-project.com/sources/libgdiplus/
-          pattern: '>(libgdiplus-([\d.]+)\.tar[^<]*)<'
-
-  - name: msbuild
-    sources:
-      - type: file
-        url: https://download.mono-project.com/repo/ubuntu/pool/main/m/msbuild/msbuild_16.6+xamarinxplat.2021.01.15.16.11-0xamarin1+debian10b1_all.deb
-        sha256: 300a0b2a10cd8a2f5555dc0c5db9b1127d2f24b274c8893984de8127cc68d7a4
-    buildsystem: simple
-    build-commands:
-      - ar x msbuild_*.deb
-      - tar xf data.tar.xz
-      - sed -e 's|/usr/|/usr/lib/sdk/mono6/|g' -i usr/bin/msbuild
-      - cp -a usr/. /usr/lib/sdk/mono6/
 
   - name: OpenRA
     sources:
@@ -69,6 +35,8 @@ modules:
           url-query: '.[].assets[] | select(.name == "OpenRA-" + $version + "-source.tar.bz2").browser_download_url'
       - type: shell
         commands:
+          - sed -i 's#msbuild#dotnet msbuild#g' Makefile
+          - sed -i 's#msbuild#dotnet msbuild#g' packaging/functions.sh
           - mkdir LocalNugetPackages
       - type: file
         path: nuget.config
@@ -193,11 +161,13 @@ modules:
       - type: file
         path: openra.metainfo.xml.in
     buildsystem: simple
+    build-options:
+      append-path: /usr/lib/sdk/dotnet5/bin
     build-commands:
       - if git rev-parse 2>/dev/null; then make version; fi
-      - make TARGETPLATFORM=unix-generic
-      - make prefix=/app install
-      - make prefix=/app install-linux-shortcuts
+      - make TARGETPLATFORM=unix-generic all
+      - make prefix=${FLATPAK_DEST} install
+      - make prefix=${FLATPAK_DEST} install-linux-shortcuts
       - |
         # Set version and release date in our custom Metainfo and install it
         set -e
@@ -216,6 +186,7 @@ modules:
     build-options:
       no-debuginfo: true
       strip: true
+      append-path: /usr/lib/sdk/mono6/bin
     build-commands:
       - /usr/lib/sdk/mono6/install.sh System.Drawing System.Numerics
       - install -d /app/lib/mono/4.5/Facades
