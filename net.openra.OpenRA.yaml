@@ -196,6 +196,10 @@ modules:
         dest-filename: fetch-geoip.sh
       - type: file
         path: openra.metainfo.xml.in
+      - type: shell
+        commands:
+          # Fix wrong SVG icon height (https://github.com/OpenRA/OpenRA/pull/20158)
+          - sed -i '/\b\(height\|viewBox\)=/ s/\b138\b/128/g' packaging/artwork/ra_scalable.svg
     buildsystem: simple
     build-commands:
       - if git rev-parse 2>/dev/null; then make version; fi
