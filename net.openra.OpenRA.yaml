@@ -16,6 +16,8 @@ finish-args:
   - --device=all
   - --share=network
   - --persist=.openra
+  - --filesystem=xdg-run/app/com.discordapp.Discord
+  - --filesystem=xdg-run/app/com.discordapp.DiscordCanary
   # https://gitlab.freedesktop.org/mesa/mesa/-/issues/4847
   # https://github.com/OpenRA/OpenRA/issues/19434
   - --env=GALLIUM_THREAD=0
@@ -237,6 +239,14 @@ modules:
     sources:
       - type: script
         commands:
+          - |
+            for socket in discord-ipc-{0..9}; do
+              for socket_path in "${XDG_RUNTIME_DIR}"/app/com.discordapp.Discord{,Canary}/"${socket}"; do
+                if [ -S "${socket_path}" ]; then
+                  ln -sf "${socket_path}" "${XDG_RUNTIME_DIR}/${socket}"
+                fi
+              done
+            done
           - cert-sync --user --quiet /etc/ssl/certs/ca-certificates.crt
           - exec "$0.real" "$@"
         dest-filename: cert-sync-wrapper
