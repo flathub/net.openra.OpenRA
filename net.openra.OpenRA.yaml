@@ -72,7 +72,7 @@ modules:
           type: json
           url: https://api.github.com/repos/OpenRA/OpenRA/releases
           version-query: '[.[] | select(.prerelease == true and .draft == false)][0].tag_name'
-          url-query: '.[].assets[] | select(.name == "OpenRA-" + $version + "-source.tar.bz2").browser_download_url'
+          url-query: .[].assets[] | select(.name == "OpenRA-" + $version + "-source.tar.bz2").browser_download_url
       - type: shell
         commands:
           - mkdir LocalNugetPackages
@@ -198,7 +198,7 @@ modules:
         path: IP2LOCATION-LITE-DB1.IPV6.BIN.ZIP
       - type: script
         commands:
-          - "# NOP"
+          - '# NOP'
         dest-filename: fetch-geoip.sh
       - type: file
         path: openra.metainfo.xml.in
@@ -266,7 +266,8 @@ modules:
   - name: export
     buildsystem: simple
     build-commands:
-      - sed -i 's/\(<launchable\(\s[^>]*\)\?>\)openra\(-[^<]*\.desktop<\)/\1net.openra.OpenRA\3/g' /app/share/metainfo/openra.metainfo.xml
+      - sed -i 's/\(<launchable\(\s[^>]*\)\?>\)openra\(-[^<]*\.desktop<\)/\1net.openra.OpenRA\3/g'
+        /app/share/metainfo/openra.metainfo.xml
       - sed -i 's/Icon=openra/Icon=net.openra.OpenRA/' /app/share/applications/openra-{ra,cnc,d2k}.desktop
       - |
         set -e
