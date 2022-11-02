@@ -22,6 +22,9 @@ finish-args:
   # https://github.com/OpenRA/OpenRA/wiki/Game-Content
   - --filesystem=/run/media:ro
   - --filesystem=/media:ro
+  # Allow discord integration
+  - --filesystem=xdg-run/app/com.discordapp.Discord:ro
+  - --filesystem=xdg-run/app/com.discordapp.DiscordCanary:ro
 build-options:
   append-path: /usr/lib/sdk/mono6/bin
   append-ld-library-path: /usr/lib/sdk/mono6/lib
@@ -235,21 +238,29 @@ modules:
       - cp /usr/lib/sdk/mono6/bin/cert-sync /app/bin/
       - sed -i 's|/usr/lib/sdk/mono6/|/app/|g' /app/bin/cert-sync
 
-  - name: cert-sync-wrapper
+  - name: wrapper
     buildsystem: simple
     sources:
       - type: script
         commands:
+          - |
+            for socket in discord-ipc-{0..9}; do
+              for socket_path in "${XDG_RUNTIME_DIR}"/app/com.discordapp.Discord{,Canary}/"${socket}"; do
+                if [ -S "${socket_path}" ]; then
+                  ln -sf "${socket_path}" "${XDG_RUNTIME_DIR}/${socket}"
+                fi
+              done
+            done
           - cert-sync --user --quiet /etc/ssl/certs/ca-certificates.crt
           - exec "$0.real" "$@"
-        dest-filename: cert-sync-wrapper
+        dest-filename: wrapper
     build-commands:
-      - install -Dm0755 -t /app/bin cert-sync-wrapper
+      - install -Dm0755 -t /app/bin wrapper
       - |
         set -e
         for f in openra-{ra,cnc,d2k}{,-server}; do
           mv "/app/bin/$f" "/app/bin/$f.real"
-          ln -s cert-sync-wrapper "/app/bin/$f"
+          ln -s wrapper "/app/bin/$f"
         done
 
   - name: export
