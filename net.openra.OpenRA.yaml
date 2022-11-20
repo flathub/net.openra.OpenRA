@@ -5,9 +5,8 @@ sdk: org.freedesktop.Sdk
 command: openra-ra
 rename-desktop-file: net.openra.OpenRA-ra.desktop
 rename-icon: net.openra.OpenRA-ra
-writable-sdk: true # Required to install MSBuild for Mono
 sdk-extensions:
-  - org.freedesktop.Sdk.Extension.mono6
+  - org.freedesktop.Sdk.Extension.dotnet6
 finish-args:
   - --socket=x11
   - --share=ipc
@@ -16,9 +15,6 @@ finish-args:
   - --device=all
   - --share=network
   - --persist=.openra
-  # https://gitlab.freedesktop.org/mesa/mesa/-/issues/4847
-  # https://github.com/OpenRA/OpenRA/issues/19434
-  - --env=GALLIUM_THREAD=0
   # https://github.com/OpenRA/OpenRA/wiki/Game-Content
   - --filesystem=/run/media:ro
   - --filesystem=/media:ro
@@ -26,173 +22,26 @@ finish-args:
   - --filesystem=xdg-run/app/com.discordapp.Discord:ro
   - --filesystem=xdg-run/app/com.discordapp.DiscordCanary:ro
 build-options:
-  append-path: /usr/lib/sdk/mono6/bin
-  append-ld-library-path: /usr/lib/sdk/mono6/lib
-  append-pkg-config-path: /usr/lib/sdk/mono6/lib/pkgconfig
-  env:
-    MONO_GAC_PREFIX: /app
-cleanup:
-  - '*.a'
-  - '*.la'
-  - /include
-  - /lib/pkgconfig
-  - /share/man
+  append-path: /usr/lib/sdk/dotnet6/bin
+  append-ld-library-path: /usr/lib/sdk/dotnet6/lib
+  append-pkg-config-path: /usr/lib/sdk/dotnet6/lib/pkgconfig
 modules:
-  - shared-modules/lua5.1/lua-5.1.5.json
-
-  - name: libgdiplus
-    sources:
-      - type: archive
-        url: https://download.mono-project.com/sources/libgdiplus/libgdiplus-6.1.tar.gz
-        sha256: 97d5a83d6d6d8f96c27fb7626f4ae11d3b38bc88a1726b4466aeb91451f3255b
-        x-checker-data:
-          type: html
-          url: https://download.mono-project.com/sources/libgdiplus/
-          pattern: '>(libgdiplus-([\d.]+)\.tar[^<]*)<'
-
-  - name: msbuild
-    sources:
-      - type: file
-        url: https://download.mono-project.com/repo/ubuntu/pool/main/m/msbuild/msbuild_16.10.1+xamarinxplat.2021.05.26.14.00-0xamarin2+debian10b1_all.deb
-        sha256: a177610be806c44877169a3fef7f15ffc65e2df7bdbe11b532eb6cc8f92b4c3c
-    buildsystem: simple
-    build-commands:
-      - ar x msbuild_*.deb
-      - tar xf data.tar.xz
-      - sed -e 's|/usr/|/usr/lib/sdk/mono6/|g' -i usr/bin/msbuild
-      - cp -a usr/. /usr/lib/sdk/mono6/
-
   - name: OpenRA
     sources:
       - type: archive
         strip-components: 0
-        url: https://github.com/OpenRA/OpenRA/releases/download/playtest-20210131/OpenRA-playtest-20210131-source.tar.bz2
-        sha256: 2c4a1ded5e3f5265fabda7e95ac72d4ad55e0f3ee4910cf290b927eb1e5335b7
+        url: https://github.com/OpenRA/OpenRA/releases/download/playtest-20221119/OpenRA-playtest-20221119-source.tar.bz2
+        sha256: 745e386c3547fb54db8fd6547f4fe70a483a42fc562f0035fcf2d7c26c988c97
         x-checker-data:
           type: json
           url: https://api.github.com/repos/OpenRA/OpenRA/releases
           version-query: '[.[] | select(.prerelease == true and .draft == false)][0].tag_name'
           url-query: .[].assets[] | select(.name == "OpenRA-" + $version + "-source.tar.bz2").browser_download_url
-      - type: shell
-        commands:
-          - mkdir nuget-sources
       - type: file
         path: nuget.config
-      - type: file
-        url: https://www.nuget.org/api/v2/package/DiscordRichPresence/1.0.150
-        dest-filename: discordrichpresence.1.0.150.nupkg
-        dest: nuget-sources
-        sha256: e9e075889bd429b1844529607e08f8db0ac3d790db758401e24345c63489ab62
-      - type: file
-        url: https://www.nuget.org/api/v2/package/Microsoft.NETFramework.ReferenceAssemblies/1.0.0
-        dest-filename: microsoft.netframework.referenceassemblies.1.0.0.nupkg
-        dest: nuget-sources
-        sha256: e9f68f4388da158dce186564de564a5be0c465a20e059ff01ea6e20d3b114759
-      - type: file
-        url: https://www.nuget.org/api/v2/package/Microsoft.NETFramework.ReferenceAssemblies.net472/1.0.0
-        dest-filename: microsoft.netframework.referenceassemblies.net472.1.0.0.nupkg
-        dest: nuget-sources
-        sha256: 2c8fd79ea19bd03cece40ed92b7bafde024f87c73abcebe3eff8da6e05b611af
-      - type: file
-        url: https://www.nuget.org/api/v2/package/NUnit/3.12.0
-        dest-filename: nunit.3.12.0.nupkg
-        dest: nuget-sources
-        sha256: 62b67516a08951a20b12b02e5d20b5045edbb687c3aabe9170286ec5bb9000a1
-      - type: file
-        url: https://www.nuget.org/api/v2/package/NUnit.Console/3.11.1
-        dest-filename: nunit.console.3.11.1.nupkg
-        dest: nuget-sources
-        sha256: 9a80693f159973cb8eba89b4fcf9766ead831f219b21bfc20f87b4f2a2349403
-      - type: file
-        url: https://www.nuget.org/api/v2/package/NUnit3TestAdapter/3.16.1
-        dest-filename: nunit3testadapter.3.16.1.nupkg
-        dest: nuget-sources
-        sha256: 0913e56087ab02a2cc91b4f2e8756f5a3bf269fe23cb7fd477faebe6aeaaf0df
-      - type: file
-        url: https://www.nuget.org/api/v2/package/OpenRA-Eluant/1.0.17
-        dest-filename: openra-eluant.1.0.17.nupkg
-        dest: nuget-sources
-        sha256: cf3a1dbf9218723a619bf2a995e9a433640dd717e38d743c4462627fdbdd42d9
-      - type: file
-        url: https://www.nuget.org/api/v2/package/OpenRA-Freetype6/1.0.4
-        dest-filename: openra-freetype6.1.0.4.nupkg
-        dest: nuget-sources
-        sha256: a18c5a259c62148756d2c072259004ec648b54eb11139e158cd367e01bd9112d
-      - type: file
-        url: https://www.nuget.org/api/v2/package/OpenRA-FuzzyLogicLibrary/1.0.1
-        dest-filename: openra-fuzzylogiclibrary.1.0.1.nupkg
-        dest: nuget-sources
-        sha256: 356e5ee72c14f1752d55ecc1e251d03dce2600ad736f7c27a52beb90085ac04e
-      - type: file
-        url: https://www.nuget.org/api/v2/package/OpenRA-Open.NAT/1.0.0
-        dest-filename: openra-open.nat.1.0.0.nupkg
-        dest: nuget-sources
-        sha256: 6bf30bdad9fc7ea62fe1ac5e78720769ebd78a2c76d5cb7ecc16a02992fbd60f
-      - type: file
-        url: https://www.nuget.org/api/v2/package/OpenRA-OpenAL-CS/1.0.16
-        dest-filename: openra-openal-cs.1.0.16.nupkg
-        dest: nuget-sources
-        sha256: ea2ebaae9936fecba38cb39614bd7c680f87862f527fe0d0ac15cfc3597df3da
-      - type: file
-        url: https://www.nuget.org/api/v2/package/OpenRA-SDL2-CS/1.0.28
-        dest-filename: openra-sdl2-cs.1.0.28.nupkg
-        dest: nuget-sources
-        sha256: 37b818de18ff6a4b2591b73c36d2cf3e2a014139d1ce898795b2e0da30f43708
-      - type: file
-        url: https://www.nuget.org/api/v2/package/SharpZipLib/1.2.0
-        dest-filename: sharpziplib.1.2.0.nupkg
-        dest: nuget-sources
-        sha256: a5e21787aa106a999f6a22a8dbec57498b1678dc2d6b2ef91ae2543971e8d07a
-      - type: file
-        url: https://www.nuget.org/api/v2/package/StyleCop.Analyzers/1.1.118
-        dest-filename: stylecop.analyzers.1.1.118.nupkg
-        dest: nuget-sources
-        sha256: 0a30b57f9cf4b0fd7917a15e5ea2033ad64b1ea8239904f3a6c22b464c574442
-      - type: file
-        url: https://www.nuget.org/api/v2/package/rix0rrr.BeaconLib/1.0.2
-        dest-filename: rix0rrr.beaconlib.1.0.2.nupkg
-        dest: nuget-sources
-        sha256: a49c7c050f4a4d1f1ca174ae6d4be8b6630cd1869cccb321dcd26c74e1891e38
-      - type: file
-        url: https://www.nuget.org/api/v2/package/Newtonsoft.Json/12.0.2
-        dest-filename: newtonsoft.json.12.0.2.nupkg
-        dest: nuget-sources
-        sha256: 056eec5d3d8b2a93f7ca5b026d34d9d5fe8c835b11e322faf1a2551da25c4e70
-      - type: file
-        url: https://www.nuget.org/api/v2/package/NuGet.CommandLine/4.4.1
-        dest-filename: nuget.commandline.4.4.1.nupkg
-        dest: nuget-sources
-        sha256: 4ba9247f4f10200013e361f35df1e17217af7f2d69b6434e998109c1172cf3eb
-      - type: file
-        url: https://www.nuget.org/api/v2/package/NUnit.ConsoleRunner/3.11.1
-        dest-filename: nunit.consolerunner.3.11.1.nupkg
-        dest: nuget-sources
-        sha256: ad4778f5a81801d3bf0e263221a777e4a90a5f14acc19d1a30166c6391a7adc3
-      - type: file
-        url: https://www.nuget.org/api/v2/package/NUnit.Extension.NUnitProjectLoader/3.6.0
-        dest-filename: nunit.extension.nunitprojectloader.3.6.0.nupkg
-        dest: nuget-sources
-        sha256: 6f930540e1010ad2b171a4db99e2786ae55de8fe3d5eae3e48af5aa7198c52d0
-      - type: file
-        url: https://www.nuget.org/api/v2/package/NUnit.Extension.NUnitV2ResultWriter/3.6.0
-        dest-filename: nunit.extension.nunitv2resultwriter.3.6.0.nupkg
-        dest: nuget-sources
-        sha256: 2af3bf083dd3492179870ff2c804ddec3e3745d3d8109bc5696fd321f3fab46d
-      - type: file
-        url: https://www.nuget.org/api/v2/package/NUnit.Extension.NUnitV2Driver/3.8.0
-        dest-filename: nunit.extension.nunitv2driver.3.8.0.nupkg
-        dest: nuget-sources
-        sha256: f29afcfe1509e3a1e0e7247b1e3c47112a1941f5108e9557b1dafd6ae24aa2bd
-      - type: file
-        url: https://www.nuget.org/api/v2/package/NUnit.Extension.TeamCityEventListener/1.0.7
-        dest-filename: nunit.extension.teamcityeventlistener.1.0.7.nupkg
-        dest: nuget-sources
-        sha256: fa6cde7ddeb62d8a55e069cf14e505dacea6d4c27992bee7846dbd50dc177ec2
-      - type: file
-        url: https://www.nuget.org/api/v2/package/NUnit.Extension.VSProjectLoader/3.8.0
-        dest-filename: nunit.extension.vsprojectloader.3.8.0.nupkg
-        dest: nuget-sources
-        sha256: 8ed8fe846d8b1523ee56829b783e0408f0e5a2814fe30a2647cf5149ed578d1c
+      # Generate nuget sources with https://github.com/flatpak/flatpak-builder-tools/tree/master/dotnet
+      # The script must be run with the arguments `-r linux-x64` and `-r linux-arm64` separately
+      - nuget-sources.json
       - type: file
         # Source: https://download.ip2location.com/lite/IP2LOCATION-LITE-DB1.IPV6.BIN.ZIP
         path: IP2LOCATION-LITE-DB1.IPV6.BIN.ZIP
@@ -202,16 +51,21 @@ modules:
         dest-filename: fetch-geoip.sh
       - type: file
         path: openra.metainfo.xml.in
-      - type: shell
-        commands:
-          # Fix wrong SVG icon height (https://github.com/OpenRA/OpenRA/pull/20158)
-          - sed -i '/\b\(height\|viewBox\)=/ s/\b138\b/128/g' packaging/artwork/ra_scalable.svg
+    build-options:
+      arch:
+        aarch64:
+          env:
+            RUNTIME: linux-arm64
+        x86_64:
+          env:
+            RUNTIME: linux-x64
     buildsystem: simple
     build-commands:
       - if git rev-parse 2>/dev/null; then make version; fi
-      - make TARGETPLATFORM=unix-generic
-      - make prefix=/app install
+      - make prefix=/app TARGETPLATFORM="${RUNTIME}" install
       - make prefix=/app install-linux-shortcuts
+      # WORKROUND: The start scripts execute mono instead of the self-contained binaries
+      - sed -i 's|mono --debug \([^ ]\+\)\.dll|./\1|' /app/bin/openra-*
       - |
         # Set version and release date in our custom Metainfo and install it
         set -e
@@ -224,19 +78,6 @@ modules:
         fi
         sed -e "s/{RELEASE_VERSION}/${version}/g" -e "s/{RELEASE_DATE}/${date}/g" openra.metainfo.xml.in >openra.metainfo.xml
         install -Dm0644 -t /app/share/metainfo openra.metainfo.xml
-
-  - name: mono-runtime
-    buildsystem: simple
-    build-options:
-      no-debuginfo: true
-      strip: true
-    build-commands:
-      - /usr/lib/sdk/mono6/install.sh System.Drawing System.Numerics
-      - install -d /app/lib/mono/4.5/Facades
-      - cp /usr/lib/sdk/mono6/lib/mono/4.5/Facades/netstandard.dll /app/lib/mono/4.5/Facades
-      - cp /usr/lib/sdk/mono6/lib/mono/4.5/cert-sync.exe /app/lib/mono/4.5/
-      - cp /usr/lib/sdk/mono6/bin/cert-sync /app/bin/
-      - sed -i 's|/usr/lib/sdk/mono6/|/app/|g' /app/bin/cert-sync
 
   - name: wrapper
     buildsystem: simple
@@ -251,7 +92,6 @@ modules:
                 fi
               done
             done
-          - cert-sync --user --quiet /etc/ssl/certs/ca-certificates.crt
           - exec "$0.real" "$@"
         dest-filename: wrapper
     build-commands:
