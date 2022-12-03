@@ -64,8 +64,6 @@ modules:
       - if git rev-parse 2>/dev/null; then make version; fi
       - make prefix=/app TARGETPLATFORM="${RUNTIME}" install
       - make prefix=/app install-linux-shortcuts
-      # WORKROUND: The start scripts execute mono instead of the self-contained binaries
-      - sed -i 's|mono --debug \([^ ]\+\)\.dll|./\1|' /app/bin/openra-*
       - |
         # Set version and release date in our custom Metainfo and install it
         set -e
