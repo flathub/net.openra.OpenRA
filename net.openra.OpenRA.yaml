@@ -245,9 +245,10 @@ modules:
         commands:
           - |
             for socket in discord-ipc-{0..9}; do
-              for socket_path in "${XDG_RUNTIME_DIR}"/app/com.discordapp.Discord{,Canary}/"${socket}"; do
-                if [ -S "${socket_path}" ]; then
-                  ln -sf "${socket_path}" "${XDG_RUNTIME_DIR}/${socket}"
+              for socket_path in "${XDG_RUNTIME_DIR}"/app/com.discordapp.Discord{Canary,}/"${socket}"; do
+                link_path="${XDG_RUNTIME_DIR}/${socket}"
+                if [ ! -e "${link_path}" ]; then
+                  ln -sf "${socket_path}" "${link_path}"
                 fi
               done
             done
