@@ -177,17 +177,17 @@
     },
     {
         "type": "file",
-        "url": "https://api.nuget.org/v3-flatcontainer/openra-eluant/1.0.18/openra-eluant.1.0.18.nupkg",
-        "sha512": "ec034f0eec64780dcd655709b109e228113cbefcb0a94492b085a3b528e53242c473c79d172e1c72c84f16cb7e27d21c9c2bd4db4faf076f5a11eb47c6aae5fe",
+        "url": "https://api.nuget.org/v3-flatcontainer/openra-eluant/1.0.19/openra-eluant.1.0.19.nupkg",
+        "sha512": "a76239cb9be9338f1d5f16731647e5c897e27ade71ebdabcd944efc72b87aa6ea391dbe8a248a6254733c9962af57071f894b03b2e53d14fc901a2304bc01d5f",
         "dest": "nuget-sources",
-        "dest-filename": "openra-eluant.1.0.18.nupkg"
+        "dest-filename": "openra-eluant.1.0.19.nupkg"
     },
     {
         "type": "file",
-        "url": "https://api.nuget.org/v3-flatcontainer/openra-freetype6/1.0.4/openra-freetype6.1.0.4.nupkg",
-        "sha512": "3d4d38c3cf0c49822dae8c2c35c766971755b81ea0876cce1d1681949bccdb4e1849fda2c474e758a5b1bd974741f90e7977f1dd7698de30358606923188ac09",
+        "url": "https://api.nuget.org/v3-flatcontainer/openra-freetype6/1.0.9/openra-freetype6.1.0.9.nupkg",
+        "sha512": "ab371149e8feb7bf19473516a540f55c987833ade9329233bb8cfee15541c41b429453430e7696d8e115df3e481229f8f805701cde2dc34917f4d7c69179efa0",
         "dest": "nuget-sources",
-        "dest-filename": "openra-freetype6.1.0.4.nupkg"
+        "dest-filename": "openra-freetype6.1.0.9.nupkg"
     },
     {
         "type": "file",
@@ -198,17 +198,17 @@
     },
     {
         "type": "file",
-        "url": "https://api.nuget.org/v3-flatcontainer/openra-openal-cs/1.0.16/openra-openal-cs.1.0.16.nupkg",
-        "sha512": "96b9b51c7573deee7e89dd1caa8914362af7d2d288d3e06ff5f4809b1b2e2a38fac398d0d9ce43139e03b82167318ca0726c0598246e588b8121c53eec8a9d0c",
+        "url": "https://api.nuget.org/v3-flatcontainer/openra-openal-cs/1.0.17/openra-openal-cs.1.0.17.nupkg",
+        "sha512": "e2e6d5594228adea5a9054107de34be582ac377d9e6fdd9ef5df2fa64e75ba3c8383d1a4e3f97fa7a7c5c0969ed3adc30c1594e7979b6b33527e802aaac1b73a",
         "dest": "nuget-sources",
-        "dest-filename": "openra-openal-cs.1.0.16.nupkg"
+        "dest-filename": "openra-openal-cs.1.0.17.nupkg"
     },
     {
         "type": "file",
-        "url": "https://api.nuget.org/v3-flatcontainer/openra-sdl2-cs/1.0.31/openra-sdl2-cs.1.0.31.nupkg",
-        "sha512": "88e8d92106d275c559a262522838425ada42e9211de7d6c355e3037976c483ea4984f9983243128ec4547efb5a2ad1ee74425cc15e60f23cc5647daf4c59b1ea",
+        "url": "https://api.nuget.org/v3-flatcontainer/openra-sdl2-cs/1.0.36/openra-sdl2-cs.1.0.36.nupkg",
+        "sha512": "c31a5b09c4c2aa0d30011063abe465396b4169284f3cc3bcbc6b20527453da40d8a8fb5cbf818239a7d4c68bc436f1b90bd283660d80cdfc7665fa6742c35afc",
         "dest": "nuget-sources",
-        "dest-filename": "openra-sdl2-cs.1.0.31.nupkg"
+        "dest-filename": "openra-sdl2-cs.1.0.36.nupkg"
     },
     {
         "type": "file",
