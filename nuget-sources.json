@@ -8,10 +8,10 @@
     },
     {
         "type": "file",
-        "url": "https://api.nuget.org/v3-flatcontainer/linguini.bundle/0.3.2/linguini.bundle.0.3.2.nupkg",
-        "sha512": "59fc0b004420c776cc94398b4fc6b008ef7ed5beadd886a2b5404304cb60a767d92c4fee988c4a5ae2f0998e9a2ba2f612f5d604128201febc755b3527ee9527",
+        "url": "https://api.nuget.org/v3-flatcontainer/linguini.bundle/0.3.1/linguini.bundle.0.3.1.nupkg",
+        "sha512": "aca99c2238976735427155b559572a4c67b28e5a64a079dedd468176f3667925772d278b576a256cb05d941d9228fcd7df33686b31d4d06c9ff7f89b677a7794",
         "dest": "nuget-sources",
-        "dest-filename": "linguini.bundle.0.3.2.nupkg"
+        "dest-filename": "linguini.bundle.0.3.1.nupkg"
     },
     {
         "type": "file",

@@ -30,12 +30,13 @@ modules:
     sources:
       - type: archive
         strip-components: 0
-        url: https://github.com/OpenRA/OpenRA/releases/download/playtest-20230218/OpenRA-playtest-20230218-source.tar.bz2
-        sha256: 3a9e18ecdb8b56df5221aa34202bcaf68fd8a466110685d933c6becb70c344cd
+        url: https://github.com/OpenRA/OpenRA/releases/download/release-20230225/OpenRA-release-20230225-source.tar.bz2
+        sha256: f0c905e729005f24a7bcb64ed4ce54f255988492c8c06d18377e0e7df45ec4d0
         x-checker-data:
           type: json
           url: https://api.github.com/repos/OpenRA/OpenRA/releases
-          version-query: '[.[].tag_name | select(startswith("playtest-"))] | sort[-1]'
+          version-query: '[.[].tag_name | select(startswith("release-") or startswith("playtest-"))]
+            | sort[-1]'
           url-query: .[].assets[] | select(.name == "OpenRA-" + $version + "-source.tar.bz2").browser_download_url
       - type: file
         path: nuget.config
