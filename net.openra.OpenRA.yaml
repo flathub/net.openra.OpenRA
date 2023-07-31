@@ -36,7 +36,7 @@ modules:
           type: json
           url: https://api.github.com/repos/OpenRA/OpenRA/releases
           version-query: '[.[].tag_name | select(startswith("release-") or startswith("playtest-"))]
-            | sort[-1]'
+            | sort_by(split("-")[1:])[-1]'
           url-query: .[].assets[] | select(.name == "OpenRA-" + $version + "-source.tar.bz2").browser_download_url
       - type: file
         path: nuget.config
