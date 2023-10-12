@@ -8,9 +8,9 @@ rename-icon: net.openra.OpenRA-ra
 sdk-extensions:
   - org.freedesktop.Sdk.Extension.dotnet6
 finish-args:
-  - --socket=x11
-  - --share=ipc
   - --socket=wayland
+  - --socket=fallback-x11
+  - --share=ipc
   - --socket=pulseaudio
   - --device=all
   - --share=network
