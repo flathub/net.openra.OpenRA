@@ -6,7 +6,7 @@ command: openra-ra
 rename-desktop-file: net.openra.OpenRA-ra.desktop
 rename-icon: net.openra.OpenRA-ra
 sdk-extensions:
-  - org.freedesktop.Sdk.Extension.dotnet6
+  - org.freedesktop.Sdk.Extension.dotnet7
 finish-args:
   - --socket=wayland
   - --socket=fallback-x11
