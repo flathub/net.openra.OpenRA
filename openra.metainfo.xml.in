@@ -31,8 +31,8 @@
     </p>
   </description>
   <launchable type="desktop-id">openra-ra.desktop</launchable>
-  <launchable type="desktop-id">openra-cnc.desktop</launchable>
-  <launchable type="desktop-id">openra-d2k.desktop</launchable>
+  <!-- <launchable type="desktop-id">openra-cnc.desktop</launchable> -->
+  <!-- <launchable type="desktop-id">openra-d2k.desktop</launchable> -->
   <screenshots>
     <screenshot type="default">
       <image>https://www.openra.net/images/appdata/ingame-ra.png</image>
