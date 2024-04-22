@@ -33,6 +33,10 @@
   <launchable type="desktop-id">openra-ra.desktop</launchable>
   <!-- <launchable type="desktop-id">openra-cnc.desktop</launchable> -->
   <!-- <launchable type="desktop-id">openra-d2k.desktop</launchable> -->
+  <developer_name>The OpenRA Developers</developer_name>
+  <developer id="net.openra">
+    <name>The OpenRA Developers</name>
+  </developer>
   <screenshots>
     <screenshot type="default">
       <image>https://www.openra.net/images/appdata/ingame-ra.png</image>
