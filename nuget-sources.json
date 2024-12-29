@@ -49,10 +49,10 @@
     },
     {
         "type": "file",
-        "url": "https://api.nuget.org/v3-flatcontainer/microsoft.extensions.dependencymodel/6.0.0/microsoft.extensions.dependencymodel.6.0.0.nupkg",
-        "sha512": "4222e75931c6e471e40966d3cb47ed73987b1bf9082d6753ef41a0ec6c6011df654847b540bc67accfe24b258fa2ea188be5c4e4458849afe7bff1d376e78789",
+        "url": "https://api.nuget.org/v3-flatcontainer/microsoft.extensions.dependencymodel/6.0.2/microsoft.extensions.dependencymodel.6.0.2.nupkg",
+        "sha512": "5f91d917e60b639a0f44ffebabe197b21187d3a0c4f78d9c6a6c3a20a14693c2fab95611184ef8f6c5c09bfbc0207be55335aab6b8966615936eec967160ffd3",
         "dest": "nuget-sources",
-        "dest-filename": "microsoft.extensions.dependencymodel.6.0.0.nupkg"
+        "dest-filename": "microsoft.extensions.dependencymodel.6.0.2.nupkg"
     },
     {
         "type": "file",
@@ -135,10 +135,10 @@
     },
     {
         "type": "file",
-        "url": "https://api.nuget.org/v3-flatcontainer/nuget.commandline/4.4.1/nuget.commandline.4.4.1.nupkg",
-        "sha512": "221134c2a0a41226b0d35335aac25aa83a05f9f05b4e3a6da01c1595210b014e8b4e46acbb6a8f3df125fad66968a6a2b9c535744b635f7b2ec4fbd4920c0ac3",
+        "url": "https://api.nuget.org/v3-flatcontainer/nuget.commandline/6.12.1/nuget.commandline.6.12.1.nupkg",
+        "sha512": "518a52da900ebad9e8dfb2f644981d6da4881c337dbb216ef1a692d60988a5fcfc340cfbcacaf2420e04fe1e71bc0bc886955569c299eacdc2fb3aa63a8973c2",
         "dest": "nuget-sources",
-        "dest-filename": "nuget.commandline.4.4.1.nupkg"
+        "dest-filename": "nuget.commandline.6.12.1.nupkg"
     },
     {
         "type": "file",
@@ -380,17 +380,17 @@
     },
     {
         "type": "file",
-        "url": "https://api.nuget.org/v3-flatcontainer/system.text.encodings.web/6.0.0/system.text.encodings.web.6.0.0.nupkg",
-        "sha512": "0f26afeeaa709ea1f05ef87058408dd9df640c869d7398b2c9c270268ddf21a9208cd7d2bfa1f7fbd8a5ceab735dd22d470a3689627c9c4fadc0ea5fe76237fa",
+        "url": "https://api.nuget.org/v3-flatcontainer/system.text.encodings.web/6.0.1/system.text.encodings.web.6.0.1.nupkg",
+        "sha512": "318f12b8f5385b116b8c33d725cbbd089c32121d032a80dae01e6bad5c05464aaeabf5c66b4f90efc9c86356afeabf29e66802d12bd9d2438fdceab38e7f8b27",
         "dest": "nuget-sources",
-        "dest-filename": "system.text.encodings.web.6.0.0.nupkg"
+        "dest-filename": "system.text.encodings.web.6.0.1.nupkg"
     },
     {
         "type": "file",
-        "url": "https://api.nuget.org/v3-flatcontainer/system.text.json/6.0.0/system.text.json.6.0.0.nupkg",
-        "sha512": "167b4ee8d1277a5d8bd6b4fbe0a3b3a708519235fb005ea98cafdd5b30e17758efeb0a87dcd068af289400d841f4d2cd24550df882d1927c47ec6ff4fb8781ff",
+        "url": "https://api.nuget.org/v3-flatcontainer/system.text.json/6.0.11/system.text.json.6.0.11.nupkg",
+        "sha512": "0c589df34f8066b14c29cc9520404f033edda8a5a2a0e7ee00702d85428fbe1ebef9eac34d789d42820630724ab0cb60bcd0acc73c1cea827b68ad9fb2abb087",
         "dest": "nuget-sources",
-        "dest-filename": "system.text.json.6.0.0.nupkg"
+        "dest-filename": "system.text.json.6.0.11.nupkg"
     },
     {
         "type": "file",
