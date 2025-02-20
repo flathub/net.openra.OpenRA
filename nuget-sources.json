@@ -177,10 +177,10 @@
     },
     {
         "type": "file",
-        "url": "https://api.nuget.org/v3-flatcontainer/openra-sdl2-cs/1.0.41/openra-sdl2-cs.1.0.41.nupkg",
-        "sha512": "62bcaf4cf9ffb1bd6171449e8d6103ad5a8aa976a1d80427031ce5f6920a8fc34c382a762b36676c7bd5c1dccdbb9500c4c7f7c885876a27bb59e5a0db929321",
+        "url": "https://api.nuget.org/v3-flatcontainer/openra-sdl2-cs/1.0.42/openra-sdl2-cs.1.0.42.nupkg",
+        "sha512": "679c2532e6bba98c6b0ddc53c761b8c8dcb51e0d5d1fff1634092752046e3db026f0d5879dce6ac82c0e21b622b80a3bccee035319950fae12a89d70f986cf2c",
         "dest": "nuget-sources",
-        "dest-filename": "openra-sdl2-cs.1.0.41.nupkg"
+        "dest-filename": "openra-sdl2-cs.1.0.42.nupkg"
     },
     {
         "type": "file",
