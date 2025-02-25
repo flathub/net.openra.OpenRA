@@ -43,12 +43,8 @@ modules:
       # The script must be run with the arguments `-r linux-x64` and `-r linux-arm64` separately
       - nuget-sources.json
       - type: file
-        # Source: https://download.ip2location.com/lite/IP2LOCATION-LITE-DB1.IPV6.BIN.ZIP
-        path: IP2LOCATION-LITE-DB1.IPV6.BIN.ZIP
-      - type: script
-        commands:
-          - '# NOP'
-        dest-filename: fetch-geoip.sh
+        url: https://github.com/OpenRA/GeoIP-Database/releases/download/monthly/IP2LOCATION-LITE-DB1.IPV6.BIN.ZIP
+        sha256: 933fa90c9f2f44a903f92fc8a54c86082a1f1fd2623d1159455ea56a9ba09132
       - type: file
         path: openra.metainfo.xml.in
     build-options:
