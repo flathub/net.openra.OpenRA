@@ -39,9 +39,9 @@ modules:
             | sort_by(split("-")[1:])[-1]'
           url-query: .[].assets[] | select(.name == "OpenRA-" + $version + "-source.tar.bz2").browser_download_url
       - type: file
-        path: nuget.config
-      # Generate nuget sources with https://github.com/flatpak/flatpak-builder-tools/tree/master/dotnet
-      # The script must be run with the arguments `-r linux-x64` and `-r linux-arm64` separately
+        path: nuget.config.xml
+        dest-filename: nuget.config
+      # Generate nuget sources by running `python ./nuget-sources-generator.py`
       - nuget-sources.json
       - type: file
         # Source: https://download.ip2location.com/lite/IP2LOCATION-LITE-DB1.IPV6.BIN.ZIP
