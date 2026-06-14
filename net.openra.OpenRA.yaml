@@ -26,6 +26,7 @@ build-options:
   append-ld-library-path: /usr/lib/sdk/dotnet6/lib
   append-pkg-config-path: /usr/lib/sdk/dotnet6/lib/pkgconfig
 modules:
+  - shared-modules/lua5.1/lua-5.1.5.json
   - name: OpenRA
     sources:
       - type: archive
@@ -62,8 +63,12 @@ modules:
     buildsystem: simple
     build-commands:
       - if git rev-parse 2>/dev/null; then make version; fi
-      - make prefix=/app TARGETPLATFORM="${RUNTIME}" install
-      - make prefix=/app install-linux-shortcuts
+      - make prefix=/app TARGETPLATFORM="${RUNTIME}" all
+      - rm bin/freetype6.so bin/lua51.so bin/SDL2.so bin/soft_oal.so
+      - ./configure-system-libraries.sh
+      - make prefix=/app install install-linux-shortcuts
+      - rm /app/lib/openra/freetype6.so /app/lib/openra/lua51.so /app/lib/openra/SDL2.so /app/lib/openra/soft_oal.so
+      - mv bin/*.so /app/lib/openra/
       - |
         # Set version and release date in our custom Metainfo and install it
         set -e
