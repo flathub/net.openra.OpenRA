@@ -41,7 +41,7 @@ modules:
       - type: file
         path: nuget.config.xml
         dest-filename: nuget.config
-      # Generate nuget sources by running `python ./nuget-sources-generator.py`
+      # Generate nuget sources by running `python3 ./nuget-sources-generator.py`
       - nuget-sources.json
       - type: file
         # Source: https://download.ip2location.com/lite/IP2LOCATION-LITE-DB1.IPV6.BIN.ZIP
