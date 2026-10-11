@@ -13,9 +13,9 @@ import urllib.request
 
 import yaml
 
-DOTNET_GENERATOR_URL = "https://github.com/flatpak/flatpak-builder-tools/raw/fdbe66a48b7450f3c18ab2cb8ff31be704846600/dotnet/flatpak-dotnet-generator.py"
+DOTNET_GENERATOR_URL = "https://github.com/flatpak/flatpak-builder-tools/raw/74697c75b630d7330e77250fc13cb5ea688d9479/dotnet/flatpak-dotnet-generator.py"
 DOTNET_GENERATOR_SHA256 = (
-    "713e750b35c8f699fe6bb1a53e3eefd88c327a125531989f3a1bdd8a7a094793"
+    "3ac5b42c46fd7c6e8c71bb8a4be7943e8125d637ea7e2c3b1a25668e4ac79e98"
 )
 ARCHITECTURES = [
     ("aarch64", "linux-arm64"),
@@ -23,7 +23,7 @@ ARCHITECTURES = [
 ]
 MANIFEST_PATH = "net.openra.OpenRA.yaml"
 NUGET_SOURCES_PATH = "nuget-sources.json"
-DOTNET_PROJECTS = ["OpenRA.sln"]
+DOTNET_PROJECTS = ["OpenRA.slnx"]
 MODULE_NAME = "OpenRA"
 
 

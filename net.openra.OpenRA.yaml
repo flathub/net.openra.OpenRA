@@ -1,12 +1,12 @@
 app-id: net.openra.OpenRA
 runtime: org.freedesktop.Platform
-runtime-version: '25.08'
+runtime-version: '26.08'
 sdk: org.freedesktop.Sdk
 command: openra-ra
 rename-desktop-file: net.openra.OpenRA-ra.desktop
 rename-icon: net.openra.OpenRA-ra
 sdk-extensions:
-  - org.freedesktop.Sdk.Extension.dotnet8
+  - org.freedesktop.Sdk.Extension.dotnet10
 finish-args:
   - --socket=wayland
   - --socket=fallback-x11
@@ -22,17 +22,17 @@ finish-args:
   - --filesystem=xdg-run/app/com.discordapp.Discord:ro
   - --filesystem=xdg-run/app/com.discordapp.DiscordCanary:ro
 build-options:
-  append-path: /usr/lib/sdk/dotnet8/bin
-  append-ld-library-path: /usr/lib/sdk/dotnet8/lib
-  append-pkg-config-path: /usr/lib/sdk/dotnet8/lib/pkgconfig
+  append-path: /usr/lib/sdk/dotnet10/bin
+  append-ld-library-path: /usr/lib/sdk/dotnet10/lib
+  append-pkg-config-path: /usr/lib/sdk/dotnet10/lib/pkgconfig
 modules:
   - shared-modules/lua5.1/lua-5.1.5.json
   - name: OpenRA
     sources:
       - type: archive
         strip-components: 0
-        url: https://github.com/OpenRA/OpenRA/releases/download/playtest-20260222/OpenRA-playtest-20260222-source.tar.bz2
-        sha256: c5c4f68a50819f7e3fed98f7805aa119c128ec7820827668a05e80da880bf3c0
+        url: https://github.com/OpenRA/OpenRA/releases/download/playtest-20261011/OpenRA-playtest-20261011-source.tar.bz2
+        sha256: 1fd660572571e0f76701ffaf106ff339d79a4bb8f588c9045fa00a0729df0afb
         x-checker-data:
           type: json
           url: https://api.github.com/repos/OpenRA/OpenRA/releases
@@ -44,13 +44,6 @@ modules:
         dest-filename: nuget.config
       # Generate nuget sources by running `python3 ./nuget-sources-generator.py`
       - nuget-sources.json
-      - type: file
-        # Source: https://download.ip2location.com/lite/IP2LOCATION-LITE-DB1.IPV6.BIN.ZIP
-        path: IP2LOCATION-LITE-DB1.IPV6.BIN.ZIP
-      - type: script
-        commands:
-          - '# NOP'
-        dest-filename: fetch-geoip.sh
       - type: file
         path: openra.metainfo.xml.in
     build-options:
@@ -65,11 +58,9 @@ modules:
     build-commands:
       - if git rev-parse 2>/dev/null; then make version; fi
       - make prefix=/app TARGETPLATFORM="${RUNTIME}" all
-      - rm bin/freetype6.so bin/lua51.so bin/SDL2.so bin/soft_oal.so
       - ./configure-system-libraries.sh
       - make prefix=/app install install-linux-shortcuts
-      - rm /app/lib/openra/freetype6.so /app/lib/openra/lua51.so /app/lib/openra/SDL2.so /app/lib/openra/soft_oal.so
-      - mv bin/*.so /app/lib/openra/
+      - cp -P bin/*.so /app/lib/openra/
       - |
         # Set version and release date in our custom Metainfo and install it
         set -e
