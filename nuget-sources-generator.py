@@ -52,7 +52,12 @@ def main():
             ),
         )
     )
-    module = next(filter(lambda m: m["name"] == MODULE_NAME, manifest["modules"]))
+    module = next(
+        filter(
+            lambda m: type(m) is not str and m["name"] == MODULE_NAME,
+            manifest["modules"],
+        )
+    )
     source_archive_url = module["sources"][0]["url"]
     source_archive_sha256 = module["sources"][0]["sha256"]
     with tempfile.TemporaryDirectory(dir=os.path.curdir) as tmpDir:
