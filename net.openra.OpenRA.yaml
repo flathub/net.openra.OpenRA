@@ -31,8 +31,8 @@ modules:
     sources:
       - type: archive
         strip-components: 0
-        url: https://github.com/OpenRA/OpenRA/releases/download/playtest-20261011/OpenRA-playtest-20261011-source.tar.bz2
-        sha256: 1fd660572571e0f76701ffaf106ff339d79a4bb8f588c9045fa00a0729df0afb
+        url: https://github.com/OpenRA/OpenRA/releases/download/playtest-20261026/OpenRA-playtest-20261026-source.tar.bz2
+        sha256: 72d51efe388542954caccec90309a044564ebe7811b9acdfaef904400f11ea16
         x-checker-data:
           type: json
           url: https://api.github.com/repos/OpenRA/OpenRA/releases
